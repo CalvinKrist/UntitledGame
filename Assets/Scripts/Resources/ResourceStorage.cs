@@ -10,12 +10,14 @@ public class ResourceStorage : MonoBehaviour
     private Dictionary<ResourceType, int> resources;
 
     public int STARTING_POWER = 0;
+    public int STARTING_MONEY = 0;
 
     void Start()
     {
         resources = new Dictionary<ResourceType, int>();
 
         resources[ResourceType.Power] = STARTING_POWER;
+        resources[ResourceType.Money] = STARTING_MONEY;
     }
 
     public void AddResources(ResourceType type, int count)
@@ -28,10 +30,7 @@ public class ResourceStorage : MonoBehaviour
 
     public int GetResourceCount(ResourceType type)
     {
-        if (resources.ContainsKey(type))
-            return resources[type];
-        else
-            return 0;
+        return resources[type];
     }
 
 }
