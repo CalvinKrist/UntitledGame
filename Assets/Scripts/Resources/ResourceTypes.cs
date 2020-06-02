@@ -2,7 +2,8 @@
 
     public enum ResourceType
     {
-        Money
+        Money,
+        Power
     }
 
 }
