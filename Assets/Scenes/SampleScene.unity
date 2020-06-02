@@ -712,6 +712,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2818334508690948799, guid: e0a4a234c4c3f304b87933276dfdf68a,
+        type: 3}
+      propertyPath: cost
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1679841611647962727, guid: e0a4a234c4c3f304b87933276dfdf68a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -827,7 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toSpawn: {fileID: 1717671166}
-  wallet: {fileID: 0}
+  wallet: {fileID: 2102830400}
 --- !u!4 &2102830399
 Transform:
   m_ObjectHideFlags: 0
