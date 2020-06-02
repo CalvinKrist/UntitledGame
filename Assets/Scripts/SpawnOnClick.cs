@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnOnClick : MonoBehaviour
 {
-	[SerializeField] public GameObject toSpawn;
+    public GameObject toSpawn;
 
 	private void Spawn(Vector3 position)
 	{
