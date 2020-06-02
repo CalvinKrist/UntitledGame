@@ -10,19 +10,28 @@ public class CameraMove : MonoBehaviour
         
     }
 
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 0.25f;
     private float scrollSpeed = 10f;
 
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (Input.mousePosition.x > (9*Screen.width / 10) )
         {
-            transform.position += moveSpeed * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            transform.position += moveSpeed * new Vector3(1, 0, 0);
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        if (Input.mousePosition.x < ( Screen.width / 10))
         {
-            transform.position += scrollSpeed * new Vector3(0, -Input.GetAxis("Mouse ScrollWheel"), 0);
+            transform.position += moveSpeed * new Vector3(-1, 0, 0);
         }
+        if (Input.mousePosition.y > (9 * Screen.height / 10))
+        {
+            transform.position += moveSpeed * new Vector3(0, 0, 1);
+        }
+        if (Input.mousePosition.y < ( Screen.height / 10))
+        {
+            transform.position += moveSpeed * new Vector3(0, 0, -1);
+        }
+
     }
 }
