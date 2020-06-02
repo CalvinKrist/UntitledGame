@@ -9,12 +9,14 @@ public class ResourceStorage : MonoBehaviour
 
     private Dictionary<ResourceType, int> resources;
 
+    public int STARTING_POWER = 0;
     public int STARTING_MONEY = 0;
 
     void Start()
     {
         resources = new Dictionary<ResourceType, int>();
 
+        resources[ResourceType.Power] = STARTING_POWER;
         resources[ResourceType.Money] = STARTING_MONEY;
     }
 
