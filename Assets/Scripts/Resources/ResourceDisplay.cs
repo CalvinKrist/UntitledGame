@@ -9,7 +9,7 @@ public class ResourceDisplay : MonoBehaviour
 {
 
     // Must be have ResourceStorage component
-    public GameObject storage;
+    public ResourceStorage storage;
     public ResourceType type;
 
     private Text textComponent;
@@ -23,6 +23,6 @@ public class ResourceDisplay : MonoBehaviour
     void Update()
     {
         if(textComponent)
-            textComponent.text = storage.GetComponent<ResourceStorage>().GetResourceCount(type).ToString();
+            textComponent.text = storage.GetResourceCount(type).ToString();
     }
 }

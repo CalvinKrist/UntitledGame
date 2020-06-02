@@ -7,18 +7,10 @@ public class ResourceGenerator : MonoBehaviour
 {
     public ResourceType type;
     public int income;
-
-    public GameObject destination;
-    private ResourceStorage dest;
-
-    void Start()
-    {
-        dest = destination.GetComponent<ResourceStorage>();
-    }
+	public ResourceStorage destination;
 
     void Update()
     {
-        if(dest)
-            dest.AddResources(type, income);
+		destination.AddResources(type, income);
     }
 }
