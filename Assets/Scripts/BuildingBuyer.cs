@@ -15,7 +15,9 @@ public class BuildingBuyer : MonoBehaviour
 		else
 		{
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
-			Instantiate(toSpawn).transform.position = position;
+			var created = Instantiate(toSpawn);
+			created.transform.position = position;
+			created.GetComponent<ResourceGenerator>().destination = wallet;
 		}
 	}
 

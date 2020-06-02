@@ -9,7 +9,7 @@ public class ResourceGenerator : MonoBehaviour
     public int income;
 	public ResourceStorage destination;
 
-    void Update()
+    void FixedUpdate()
     {
 		destination.AddResources(type, income);
     }
