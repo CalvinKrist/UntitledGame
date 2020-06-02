@@ -1,14 +1,22 @@
-﻿using System.Collections;
+﻿using ResourceTypes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnOnClick : MonoBehaviour
+public class BuildingBuyer : MonoBehaviour
 {
-    public GameObject toSpawn;
-
+    public Building toSpawn;
+	[SerializeField] private ResourceStorage wallet;
 	private void Spawn(Vector3 position)
 	{
-		Instantiate(toSpawn).transform.position = position;
+		int balance = wallet.GetResourceCount(ResourceType.Money);
+		if(balance < toSpawn.cost)
+			Debug.Log("not enough money to place");
+		else
+		{
+			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
+			Instantiate(toSpawn).transform.position = position;
+		}
 	}
 
 	private Vector3? ClickToGround()
