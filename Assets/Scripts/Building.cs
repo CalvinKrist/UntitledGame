@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-	[SerializeField] private int cost;
+	public int cost;
     void Start()
     {
         
