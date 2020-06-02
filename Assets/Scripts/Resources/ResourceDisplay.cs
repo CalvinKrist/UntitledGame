@@ -12,9 +12,17 @@ public class ResourceDisplay : MonoBehaviour
     public GameObject storage;
     public ResourceType type;
 
+    private Text textComponent;
+
+    void Start()
+    {
+        textComponent = this.gameObject.GetComponent<Text>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.GetComponent<Text>().text = storage.GetComponent<ResourceStorage>().GetResourceCount(type).ToString();
+        if(textComponent)
+            textComponent.text = storage.GetComponent<ResourceStorage>().GetResourceCount(type).ToString();
     }
 }
