@@ -6,11 +6,11 @@ using ResourceTypes;
 public class ResourceGenerator : MonoBehaviour
 {
     public ResourceType type;
-    public int income;
+    public float income; // measured as income per minute
 	public ResourceStorage destination;
 
     void FixedUpdate()
     {
-		destination.AddResources(type, income);
+		destination.AddResources(type, income * Time.deltaTime / 60);
     }
 }

@@ -9,7 +9,7 @@ public class BuildingBuyer : MonoBehaviour
 	[SerializeField] private ResourceStorage wallet;
 	private void Spawn(Vector3 position)
 	{
-		int balance = wallet.GetResourceCount(ResourceType.Money);
+		float balance = wallet.GetResourceCount(ResourceType.Money);
 		if(balance < toSpawn.cost)
 			Debug.Log("not enough money to place");
 		else

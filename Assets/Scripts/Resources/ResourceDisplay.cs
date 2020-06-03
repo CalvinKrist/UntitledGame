@@ -23,6 +23,6 @@ public class ResourceDisplay : MonoBehaviour
     void Update()
     {
         if(textComponent)
-            textComponent.text = storage.GetResourceCount(type).ToString();
+            textComponent.text = ((int)(storage.GetResourceCount(type))).ToString();
     }
 }
