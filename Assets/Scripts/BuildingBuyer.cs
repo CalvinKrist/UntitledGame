@@ -36,11 +36,9 @@ public class BuildingBuyer : MonoBehaviour
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
-			Vector3? terrainRayPosition = ClickToGround();
-			if(terrainRayPosition.HasValue)
-			{
-				this.Spawn((Vector3)terrainRayPosition);
-			}
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			pos.z = 0;
+			this.Spawn(pos);
 		}
 	}
 }
