@@ -7,20 +7,20 @@ using System.Collections.Generic;
 public class ResourceStorage : MonoBehaviour
 {
 
-    private Dictionary<ResourceType, int> resources;
+    private Dictionary<ResourceType, float> resources;
 
     public int STARTING_POWER = 0;
     public int STARTING_MONEY = 0;
 
     void Start()
     {
-        resources = new Dictionary<ResourceType, int>();
+        resources = new Dictionary<ResourceType, float>();
 
         resources[ResourceType.Power] = STARTING_POWER;
         resources[ResourceType.Money] = STARTING_MONEY;
     }
 
-    public void AddResources(ResourceType type, int count)
+    public void AddResources(ResourceType type, float count)
     {
         if(resources.ContainsKey(type))
             resources[type] += count;
@@ -28,7 +28,7 @@ public class ResourceStorage : MonoBehaviour
             resources[type] = count;
     }
 
-    public int GetResourceCount(ResourceType type)
+    public float GetResourceCount(ResourceType type)
     {
         return resources[type];
     }
