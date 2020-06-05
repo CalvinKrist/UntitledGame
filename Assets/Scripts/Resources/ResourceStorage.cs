@@ -13,9 +13,16 @@ namespace Untitled
 
             private Dictionary<ResourceType, float> resources;
 
+            public StorageInitializer initializer = null;
+
             void Awake()
             {
                 resources = new Dictionary<ResourceType, float>();
+
+                if(initializer != null)
+                {
+                    initializer.Initialize(this);
+                }
             }
 
             public void AddResources(ResourceType type, float count)
@@ -32,6 +39,7 @@ namespace Untitled
                     return resources[type];
                 return 0;
             }
+    
 
         }
 
