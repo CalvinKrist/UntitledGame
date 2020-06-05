@@ -1,0 +1,1268 @@
+fileFormatVersion: 2
+guid: dec9ab5b83df85c4197c397ac2d33460
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 818052492355894198
+    second: coal_tiles_0
+  - first:
+      213: 1590613561021629551
+    second: coal_tiles_1
+  - first:
+      213: 5804881239983208460
+    second: coal_tiles_2
+  - first:
+      213: 8460073991947060330
+    second: coal_tiles_3
+  - first:
+      213: 1056774242529763150
+    second: coal_tiles_4
+  - first:
+      213: 2432934489873816885
+    second: coal_tiles_5
+  - first:
+      213: -5205512823355400383
+    second: coal_tiles_6
+  - first:
+      213: 4407518185004593528
+    second: coal_tiles_7
+  - first:
+      213: 7660512664661745889
+    second: coal_tiles_8
+  - first:
+      213: -3069302244758148275
+    second: coal_tiles_9
+  - first:
+      213: -1756033037817050077
+    second: coal_tiles_10
+  - first:
+      213: -4287163687946055481
+    second: coal_tiles_11
+  - first:
+      213: -6913374072034310335
+    second: coal_tiles_12
+  - first:
+      213: -424899863910863178
+    second: coal_tiles_13
+  - first:
+      213: 3300445137216373191
+    second: coal_tiles_14
+  - first:
+      213: 1345850469187013077
+    second: coal_tiles_15
+  - first:
+      213: 707450693294172935
+    second: coal_tiles_16
+  - first:
+      213: 2267472197900919978
+    second: coal_tiles_17
+  - first:
+      213: 9017795417781154258
+    second: coal_tiles_18
+  - first:
+      213: -726232608304135723
+    second: coal_tiles_19
+  - first:
+      213: -8792445649456517837
+    second: coal_tiles_20
+  - first:
+      213: 8234137000136625590
+    second: coal_tiles_21
+  - first:
+      213: -7887414479154822867
+    second: coal_tiles_22
+  - first:
+      213: -4357421384978337359
+    second: coal_tiles_23
+  - first:
+      213: 9136720304406801913
+    second: coal_tiles_24
+  - first:
+      213: -4261687939355660981
+    second: coal_tiles_25
+  - first:
+      213: -7019212827426803904
+    second: coal_tiles_26
+  - first:
+      213: 2508307428890434463
+    second: coal_tiles_27
+  - first:
+      213: 3522044924777888348
+    second: coal_tiles_28
+  - first:
+      213: -5559677888442554203
+    second: coal_tiles_29
+  - first:
+      213: -1273050470987178440
+    second: coal_tiles_30
+  - first:
+      213: -7983758518946410090
+    second: coal_tiles_31
+  - first:
+      213: -8124837942860883335
+    second: coal_tiles_32
+  - first:
+      213: 7369741247610953314
+    second: coal_tiles_33
+  - first:
+      213: 355040548068067
+    second: coal_tiles_34
+  - first:
+      213: 7851431626789956562
+    second: coal_tiles_35
+  - first:
+      213: 7649919800036307227
+    second: coal_tiles_36
+  - first:
+      213: -4032307238615794227
+    second: coal_tiles_37
+  - first:
+      213: -6273680999468777764
+    second: coal_tiles_38
+  - first:
+      213: 4236792594543710900
+    second: coal_tiles_39
+  - first:
+      213: -6227418623968439173
+    second: coal_tiles_40
+  - first:
+      213: -5964326922626343869
+    second: coal_tiles_41
+  - first:
+      213: 6143642896053873806
+    second: coal_tiles_42
+  - first:
+      213: 3937133249730920184
+    second: coal_tiles_43
+  - first:
+      213: 2298142932650450246
+    second: coal_tiles_44
+  - first:
+      213: -2907253962991524965
+    second: coal_tiles_45
+  - first:
+      213: -4467082306524143503
+    second: coal_tiles_46
+  - first:
+      213: -5277042076321397638
+    second: coal_tiles_47
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: coal_tiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bbfe76586e4a5b00800000000000000
+      internalID: 818052492355894198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f640d973b9ef21610800000000000000
+      internalID: 1590613561021629551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0837807bb41f8050800000000000000
+      internalID: 5804881239983208460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a648687e878386570800000000000000
+      internalID: 8460073991947060330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4fd4c5139a6aae00800000000000000
+      internalID: 1056774242529763150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d99be370583c120800000000000000
+      internalID: 2432934489873816885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f192acaad42c7b0800000000000000
+      internalID: -5205512823355400383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 755
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871f54eef66aa2d30800000000000000
+      internalID: 4407518185004593528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e06b8e6eab9f4a60800000000000000
+      internalID: 7660512664661745889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ba1e8ced5a765d0800000000000000
+      internalID: -3069302244758148275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c8017814151a7e0800000000000000
+      internalID: -1756033037817050077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c09506175fe084c0800000000000000
+      internalID: -4287163687946055481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 147cffcf8e2ce00a0800000000000000
+      internalID: -6913374072034310335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be2b7233d37a1af0800000000000000
+      internalID: -424899863910863178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c18274ad598dcd20800000000000000
+      internalID: 3300445137216373191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_15
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 627
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d94fa00fdb6da210800000000000000
+      internalID: 1345850469187013077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b27e548ae51d900800000000000000
+      internalID: 707450693294172935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa465fd43fda77f10800000000000000
+      internalID: 2267472197900919978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1bdf57725a52d70800000000000000
+      internalID: 9017795417781154258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d10abd5a47ebe5f0800000000000000
+      internalID: -726232608304135723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d27352445faf580800000000000000
+      internalID: -8792445649456517837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_21
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd4b0da9f7854270800000000000000
+      internalID: 8234137000136625590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_22
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2144bd02564a8290800000000000000
+      internalID: -7887414479154822867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_23
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 499
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b1fca346545783c0800000000000000
+      internalID: -4357421384978337359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd244c55b62cce70800000000000000
+      internalID: 9136720304406801913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4da32706617bd4c0800000000000000
+      internalID: -4261687939355660981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f2c527f1fb69e90800000000000000
+      internalID: -7019212827426803904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9bdc76215c4fc220800000000000000
+      internalID: 2508307428890434463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a7a50d231d0e030800000000000000
+      internalID: 3522044924777888348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8a9c9ba6e08d2b0800000000000000
+      internalID: -5559677888442554203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e5aaf6757355ee0800000000000000
+      internalID: -1273050470987178440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_31
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 371
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69153b14dedf33190800000000000000
+      internalID: -7983758518946410090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a592e20f6ce3f80800000000000000
+      internalID: -8124837942860883335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_33
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e156e3e94964660800000000000000
+      internalID: 7369741247610953314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_34
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea9fb158e2410000800000000000000
+      internalID: 355040548068067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_35
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db25154773e5fc60800000000000000
+      internalID: 7851431626789956562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_36
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b113461f689f92a60800000000000000
+      internalID: 7649919800036307227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_37
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcdb1193eed5a08c0800000000000000
+      internalID: -4032307238615794227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_38
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdebb80de586fe8a0800000000000000
+      internalID: -6273680999468777764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_39
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 243
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b298c0da6c1cca30800000000000000
+      internalID: 4236792594543710900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7495ba71c3c399a0800000000000000
+      internalID: -6227418623968439173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cde84a3447a3da0800000000000000
+      internalID: -5964326922626343869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_42
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ca42ed9aa924550800000000000000
+      internalID: 6143642896053873806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_43
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fe379fa4d183a630800000000000000
+      internalID: 3937133249730920184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d54b732d4a4ef10800000000000000
+      internalID: 2298142932650450246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_45
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b932b088ceb57a7d0800000000000000
+      internalID: -2907253962991524965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_46
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17022315f4cb102c0800000000000000
+      internalID: -4467082306524143503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal_tiles_47
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 115
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74c218c03e24c6b0800000000000000
+      internalID: -5277042076321397638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 66709c49d6487334da810d3831cd1072
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

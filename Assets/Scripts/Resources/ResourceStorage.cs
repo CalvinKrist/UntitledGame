@@ -1,36 +1,39 @@
 ﻿using System.Collections;
 using UnityEngine;
-using ResourceTypes;
 using System.Security.AccessControl;
 using System.Collections.Generic;
+using System;
 
-public class ResourceStorage : MonoBehaviour
+namespace Untitled
 {
-
-    private Dictionary<ResourceType, float> resources;
-
-    public int STARTING_POWER = 0;
-    public int STARTING_MONEY = 0;
-
-    void Start()
+    namespace Resource
     {
-        resources = new Dictionary<ResourceType, float>();
+        public class ResourceStorage : MonoBehaviour
+        {
 
-        resources[ResourceType.Power] = STARTING_POWER;
-        resources[ResourceType.Money] = STARTING_MONEY;
+            private Dictionary<ResourceType, float> resources;
+
+            void Awake()
+            {
+                resources = new Dictionary<ResourceType, float>();
+            }
+
+            public void AddResources(ResourceType type, float count)
+            {
+                if (resources.ContainsKey(type))
+                    resources[type] += count;
+                else
+                    resources[type] = count;
+            }
+
+            public float GetResourceCount(ResourceType type)
+            {
+                if (resources.ContainsKey(type))
+                    return resources[type];
+                return 0;
+            }
+
+        }
+
     }
-
-    public void AddResources(ResourceType type, float count)
-    {
-        if(resources.ContainsKey(type))
-            resources[type] += count;
-        else
-            resources[type] = count;
-    }
-
-    public float GetResourceCount(ResourceType type)
-    {
-        return resources[type];
-    }
-
 }

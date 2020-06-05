@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ResourceTypes;
 
-public class ResourceGenerator : MonoBehaviour
+namespace Untitled
 {
-    public ResourceType type;
-    public float income; // measured as income per minute
-	public ResourceStorage destination;
-
-    void FixedUpdate()
+    namespace Resource
     {
-		destination.AddResources(type, income * Time.deltaTime / 60);
+        public class ResourceGenerator : MonoBehaviour
+        {
+            public ResourceType type;
+            public float income; // measured as income per minute
+            public ResourceStorage destination;
+
+            void FixedUpdate()
+            {
+                destination.AddResources(type, income * Time.deltaTime / 60);
+            }
+        }
     }
 }
