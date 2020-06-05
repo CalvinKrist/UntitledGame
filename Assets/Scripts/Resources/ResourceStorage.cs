@@ -9,15 +9,16 @@ public class ResourceStorage : MonoBehaviour
 
     private Dictionary<ResourceType, float> resources;
 
-    public int STARTING_POWER = 0;
-    public int STARTING_MONEY = 0;
+    public StorageInitializer initializer = null;
 
-    void Start()
+    void Awake()
     {
         resources = new Dictionary<ResourceType, float>();
 
-        resources[ResourceType.Power] = STARTING_POWER;
-        resources[ResourceType.Money] = STARTING_MONEY;
+        if(initializer != null)
+        {
+            initializer.Initialize(this);
+        }
     }
 
     public void AddResources(ResourceType type, float count)
@@ -30,7 +31,9 @@ public class ResourceStorage : MonoBehaviour
 
     public float GetResourceCount(ResourceType type)
     {
-        return resources[type];
+        if (resources.ContainsKey(type))
+            return resources[type];
+        return 0;
     }
 
 }
