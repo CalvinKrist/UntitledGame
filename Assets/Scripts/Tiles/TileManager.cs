@@ -20,19 +20,25 @@ namespace Untitled
             public Tilemap tilemap;
             private Dictionary<int, ResourceStorage> storageMap;
             private Dictionary<string, TileType> typeMap;
+            Grid grid;
 
             void Awake()
             {
                 storageMap = new Dictionary<int, ResourceStorage>();
+                grid = FindObjectOfType<Grid>();
             }
 
             public TileType CheckType(Vector3 pos)
             {
                 Tile t = GetTileAt(pos);
                 Debug.Log("My tile: " + t);
-                string asset_name = t.sprite.name;
-                if (asset_name.ToLower().Contains("coal"))
-                    return TileType.Coal;
+                if (t != null)
+                {
+                    string asset_name = t.sprite.name;
+                    if (asset_name.ToLower().Contains("coal"))
+                        return TileType.Coal;
+                }
+                
                 return TileType.Other;
             }
 
@@ -45,8 +51,9 @@ namespace Untitled
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
                 pos.z = 0;
-                Debug.Log("Converted Coords: " + pos);
-                return tilemap.GetTile<Tile>(new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z));                
+                Vector3Int gridCoords = grid.WorldToCell(pos);
+                Debug.Log("Converted Coords: " + gridCoords);
+                return tilemap.GetTile<Tile>(gridCoords);                
             }
         }
     }

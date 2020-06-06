@@ -38,7 +38,7 @@ public class BuildingBuyer : MonoBehaviour
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 pos = Input.mousePosition;
 			Debug.Log("Mouse Position: " + pos);
 			TileManager t = GetComponent<TileManager>();
 			Debug.Log("Look at meeeeeeee TileType: " + t.CheckType(pos));
