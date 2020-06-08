@@ -13,24 +13,6 @@ namespace Untitled
 {
     namespace Tiles
     {
-        public enum TileType
-        {
-            Coal,
-            Ground,
-            Other,
-            None
-        }
-
-        public class ResourceTile
-        {
-            public float Value { get; set; }
-            
-            public ResourceTile(float value)
-            {
-                Value = value;
-            }
-        }
-
         public class TileManager : MonoBehaviour
         {
             public Dictionary<ResourceType, int> worldStartingResources;
@@ -64,19 +46,19 @@ namespace Untitled
                 }
             }
 
-            public void Update()
-            {
-                
-            }
-
             private int FlatIndex(Vector3Int pos)
             {
-                return pos.x * tilemap.cellBounds.y + pos.y;
+                return FlatIndex(pos.x, pos.y);
             }
 
             private int FlatIndex(Vector2Int pos)
             {
-                return pos.x * tilemap.cellBounds.y + pos.y;
+                return FlatIndex(pos.x, pos.y);
+            }
+
+            private int FlatIndex(int x, int y)
+            {
+                return x * tilemap.cellBounds.y + y;
             }
 
             public TileType CheckType(Vector3 pos)
