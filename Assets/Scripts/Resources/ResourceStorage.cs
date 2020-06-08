@@ -15,7 +15,7 @@ namespace Untitled
 
             public StorageInitializer initializer = null;
 
-            void Awake()
+            void Start()
             {
                 resources = new Dictionary<ResourceType, float>();
 

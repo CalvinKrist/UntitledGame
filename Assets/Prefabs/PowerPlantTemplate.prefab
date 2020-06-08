@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3615413576068980660}
   - component: {fileID: 3615413576068980661}
   - component: {fileID: -1136805300246908738}
-  - component: {fileID: 7177398302114840651}
   m_Layer: 0
   m_Name: PowerPlantTemplate
   m_TagString: Untagged
@@ -96,18 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 69
---- !u!114 &7177398302114840651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615413576068980662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4121e6c64b5834bbf51148ea800154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  income: 69
-  destination: {fileID: 0}
+  powerCost: 0
+  generatedResourceType: 1
+  resourceGenerationRate: 60
+  destinationStorage: {fileID: 0}
+  resourceInputType: 2
+  resourceDepletionRate: 1
+  inputStorage: {fileID: 0}
