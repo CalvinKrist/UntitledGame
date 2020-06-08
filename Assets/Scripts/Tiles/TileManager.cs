@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Untitled.Resource;
 using Untitled.Configs;
 using System.Linq;
-using JetBrains.Annotations;
-using System.Dynamic;
+
 
 namespace Untitled
 {
@@ -40,7 +37,7 @@ namespace Untitled
 
                         if (Config.Instance.TileConfig.ResourceTiles.Contains(tileType))
                         {
-                            storageMap[FlatIndex(new Vector2Int(i, j))] = new ResourceTile(Config.Instance.TileConfig.TileStartingValues[CheckType(tile)]);
+                            storageMap[FlatIndex(i, j)] = new ResourceTile(Config.Instance.TileConfig.TileStartingValues[CheckType(tile)]);
                         }
                     }
                 }
