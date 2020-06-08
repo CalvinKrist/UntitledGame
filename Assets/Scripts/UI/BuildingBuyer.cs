@@ -41,7 +41,8 @@ public class BuildingBuyer : MonoBehaviour
 			Vector3 pos = Input.mousePosition;
 			Debug.Log("Mouse Position: " + pos);
 			TileManager t = GetComponent<TileManager>();
-			Debug.Log("Look at meeeeeeee TileType: " + t.CheckType(pos));
+			Debug.Log("TileType: " + t.CheckType(pos));
+			Debug.Log("Storage Value: " + t.GetValueAt(pos));
 			pos.z = 0;
 			this.Spawn(pos);
 		}

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Untitled.Resource;
+using Untitled.Configs;
+using System.Linq;
+using JetBrains.Annotations;
+using System.Dynamic;
 
 namespace Untitled
 {
@@ -12,34 +16,110 @@ namespace Untitled
         public enum TileType
         {
             Coal,
+            Ground,
             Other,
+            None
         }
+
+        public class ResourceTile
+        {
+            public float Value { get; set; }
+            
+            public ResourceTile(float value)
+            {
+                Value = value;
+            }
+        }
+
         public class TileManager : MonoBehaviour
         {
-            [SerializeField]
+            public Dictionary<ResourceType, int> worldStartingResources;
             public Tilemap tilemap;
-            private Dictionary<int, ResourceStorage> storageMap;
-            private Dictionary<string, TileType> typeMap;
-            Grid grid;
+
+            private Dictionary<int, ResourceTile> storageMap;
 
             void Awake()
             {
-                storageMap = new Dictionary<int, ResourceStorage>();
-                grid = FindObjectOfType<Grid>();
+                storageMap = new Dictionary<int, ResourceTile>();
+            }
+
+            void Start()
+            {
+                for (int i = tilemap.cellBounds.xMin; i < tilemap.cellBounds.xMax; i++)
+                {
+                    for (int j = tilemap.cellBounds.yMin; j < tilemap.cellBounds.yMax; j++)
+                    {
+                        Tile tile = tilemap.GetTile<Tile>(new Vector3Int(i, j, 0));
+
+                        if (tile == null)
+                            continue;
+
+                        TileType tileType = CheckType(tile);
+
+                        if (Config.Instance.TileConfig.ResourceTiles.Contains(tileType))
+                        {
+                            storageMap[FlatIndex(new Vector2Int(i, j))] = new ResourceTile(Config.Instance.TileConfig.TileStartingValues[CheckType(tile)]);
+                        }
+                    }
+                }
+            }
+
+            public void Update()
+            {
+                
+            }
+
+            private int FlatIndex(Vector3Int pos)
+            {
+                return pos.x * tilemap.cellBounds.y + pos.y;
+            }
+
+            private int FlatIndex(Vector2Int pos)
+            {
+                return pos.x * tilemap.cellBounds.y + pos.y;
             }
 
             public TileType CheckType(Vector3 pos)
             {
-                Tile t = GetTileAt(pos);
-                Debug.Log("My tile: " + t);
-                if (t != null)
+                return CheckType(GetTileAt(pos));
+            }
+
+            public float GetValueAt(Vector3 pos)
+            {
+                pos = Camera.main.ScreenToWorldPoint(pos);
+                pos.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
+                return GetValueAt(gridCoords);
+            }
+
+            public float GetValueAt(Vector3Int pos)
+            {
+                return GetValueAt(FlatIndex(pos));
+            }
+
+            public float GetValueAt(int pos)
+            {
+                ResourceTile tile;
+                if (storageMap.TryGetValue(pos, out tile))
                 {
-                    string asset_name = t.sprite.name;
+                    return tile.Value;
+                } 
+                else
+                {
+                    return 0;
+                }
+            }
+
+            public TileType CheckType(Tile tile)
+            {
+                if (tile != null)
+                {
+                    string asset_name = tile.sprite.name;
                     if (asset_name.ToLower().Contains("coal"))
                         return TileType.Coal;
+                    return TileType.Other;
                 }
-                
-                return TileType.Other;
+                return TileType.None;
             }
 
             public bool ModifyTileStorage(Vector3 pos, int delta)
@@ -51,7 +131,7 @@ namespace Untitled
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
                 pos.z = 0;
-                Vector3Int gridCoords = grid.WorldToCell(pos);
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
                 Debug.Log("Converted Coords: " + gridCoords);
                 return tilemap.GetTile<Tile>(gridCoords);                
             }
