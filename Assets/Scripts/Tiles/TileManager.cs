@@ -47,7 +47,7 @@ namespace Untitled
                 return false;
             }
 
-            private Tile GetTileAt(Vector3 pos)
+            public Tile GetTileAt(Vector3 pos)
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
                 pos.z = 0;
@@ -55,6 +55,15 @@ namespace Untitled
                 Debug.Log("Converted Coords: " + gridCoords);
                 return tilemap.GetTile<Tile>(gridCoords);                
             }
+
+            public Vector3 CastWorldCoordsToTile(Vector3 pos)
+            {
+                pos = Camera.main.ScreenToWorldPoint(pos);
+                pos.z = 0;
+                Vector3Int gridCoords = grid.WorldToCell(pos);
+                return grid.CellToWorld(gridCoords);
+            }
+
         }
     }
 }
