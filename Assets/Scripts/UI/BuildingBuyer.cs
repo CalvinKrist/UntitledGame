@@ -28,8 +28,11 @@ public class BuildingBuyer : MonoBehaviour
 		{
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
 			var created = Instantiate(toSpawn);
-			created.transform.position = position;
+			created.transform.position = tileManager.CastWorldCoordsToTile(position);
 			created.GetComponent<Building>().destinationStorage = wallet;
+			created.GetComponent<Building>().inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+			
+			Debug.Log(created.GetComponent<Building>().inputStorage);
 		}
 	}
 
@@ -38,9 +41,12 @@ public class BuildingBuyer : MonoBehaviour
 		if(Input.GetMouseButtonDown(0))
 		{
 			var mousePos = Input.mousePosition;
+			
+			Debug.Log(tileManager.CheckType(mousePos));
 
-			if (tileManager && tileManager.CheckType(mousePos) == TileType.Coal)
-				Spawn(tileManager.CastWorldCoordsToTile(mousePos));
+			var tileType = tileManager.CheckType(mousePos);
+			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType))
+				Spawn(mousePos);
 		}
 	}
 }

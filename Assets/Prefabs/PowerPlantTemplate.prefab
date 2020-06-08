@@ -96,9 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 69
   powerCost: 0
+  placeableTiles: 00000000
   generatedResourceType: 1
   resourceGenerationRate: 60
-  destinationStorage: {fileID: 0}
   resourceInputType: 2
-  resourceDepletionRate: 1
-  inputStorage: {fileID: 0}
+  resourceDepletionRate: 59

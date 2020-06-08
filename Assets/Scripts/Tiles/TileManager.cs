@@ -21,13 +21,21 @@ namespace Untitled
             None
         }
 
-        public class ResourceTile
+        public class ResourceTile : IResourceStorage
         {
-            public float Value { get; set; }
+            private float val;
+			
+			public void AddResources(ResourceType type, float count) {
+				val += count;
+			}
+			
+			public float GetResourceCount(ResourceType type) {
+				return val;
+			}
             
-            public ResourceTile(float value)
+            public ResourceTile(float startingVal)
             {
-                Value = value;
+                val = startingVal;
             }
         }
 
@@ -64,11 +72,6 @@ namespace Untitled
                 }
             }
 
-            public void Update()
-            {
-                
-            }
-
             private int FlatIndex(Vector3Int pos)
             {
                 return pos.x * tilemap.cellBounds.y + pos.y;
@@ -102,12 +105,26 @@ namespace Untitled
                 ResourceTile tile;
                 if (storageMap.TryGetValue(pos, out tile))
                 {
-                    return tile.Value;
+                    return tile.GetResourceCount(ResourceType.None);
                 } 
                 else
                 {
                     return 0;
                 }
+            }
+			
+			public ResourceTile GetResourceTileAtWorldCoords(Vector3 worldCoords)
+            {
+				worldCoords = Camera.main.ScreenToWorldPoint(worldCoords);
+                worldCoords.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(worldCoords);
+				int index = FlatIndex(gridCoords);
+				
+                ResourceTile tile;
+                if (storageMap.TryGetValue(index, out tile)) 
+                    return tile;
+                
+                return null;
             }
 
             public TileType CheckType(Tile tile)
@@ -140,8 +157,8 @@ namespace Untitled
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
                 pos.z = 0;
-                Vector3Int gridCoords = grid.WorldToCell(pos);
-                return grid.CellToWorld(gridCoords);
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
+                return tilemap.CellToWorld(gridCoords);
             }
 
         }

@@ -8,7 +8,7 @@ namespace Untitled
 {
     namespace Resource
     {
-        public class ResourceStorage : MonoBehaviour
+        public class ResourceStorage : MonoBehaviour, IResourceStorage
         {
 
             private Dictionary<ResourceType, float> resources;
