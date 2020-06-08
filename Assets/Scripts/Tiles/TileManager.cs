@@ -46,6 +46,35 @@ namespace Untitled
                 }
             }
 
+            private Tile GetTileAt(Vector3 pos)
+            {
+                pos = Camera.main.ScreenToWorldPoint(pos);
+                pos.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
+                Debug.Log("Converted Coords: " + gridCoords);
+                return tilemap.GetTile<Tile>(gridCoords);
+            }
+
+            /*** CheckType ***/
+            public TileType CheckType(Vector3 pos)
+            {
+                return CheckType(GetTileAt(pos));
+            }
+
+            public TileType CheckType(Tile tile)
+            {
+                if (tile != null)
+                {
+                    string asset_name = tile.sprite.name;
+                    if (asset_name.ToLower().Contains("coal"))
+                        return TileType.Coal;
+                    return TileType.Other;
+                }
+                return TileType.None;
+            }
+            /*** End CheckType ***/
+
+            /*** FlatIndex ***/
             private int FlatIndex(Vector3Int pos)
             {
                 return FlatIndex(pos.x, pos.y);
@@ -60,12 +89,9 @@ namespace Untitled
             {
                 return x * tilemap.cellBounds.y + y;
             }
+            /*** End FlatIndex ***/
 
-            public TileType CheckType(Vector3 pos)
-            {
-                return CheckType(GetTileAt(pos));
-            }
-
+            /*** GetValueAt ***/
             public float GetValueAt(Vector3 pos)
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
@@ -91,32 +117,8 @@ namespace Untitled
                     return 0;
                 }
             }
-
-            public TileType CheckType(Tile tile)
-            {
-                if (tile != null)
-                {
-                    string asset_name = tile.sprite.name;
-                    if (asset_name.ToLower().Contains("coal"))
-                        return TileType.Coal;
-                    return TileType.Other;
-                }
-                return TileType.None;
-            }
-
-            public bool ModifyTileStorage(Vector3 pos, int delta)
-            {
-                return false;
-            }
-
-            private Tile GetTileAt(Vector3 pos)
-            {
-                pos = Camera.main.ScreenToWorldPoint(pos);
-                pos.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                Debug.Log("Converted Coords: " + gridCoords);
-                return tilemap.GetTile<Tile>(gridCoords);                
-            }
+            /*** End GetValueAt ***/
+            
         }
     }
 }
