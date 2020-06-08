@@ -3,7 +3,8 @@
     public enum ResourceType
     {
         Money,
-        Power
+        Power,
+		Population
     }
 
 }
