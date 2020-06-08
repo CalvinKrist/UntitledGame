@@ -14,32 +14,6 @@ namespace Untitled
     namespace Tiles
     {
 
-        public enum TileType
-        {
-            Coal,
-            Ground,
-            Other,
-            None
-        }
-
-        public class ResourceTile : IResourceStorage
-        {
-            private float val;
-			
-            public void AddResources(ResourceType type, float count) {
-              val += count;
-            }
-
-            public float GetResourceCount(ResourceType type) {
-              return val;
-            }
-
-            public ResourceTile(float startingVal)
-            {
-                val = startingVal;
-            }
-        }
-
         public class TileManager : MonoBehaviour
         {
             public Dictionary<ResourceType, int> worldStartingResources;
@@ -83,6 +57,7 @@ namespace Untitled
             }
 
             /*** CheckType ***/
+			
             public TileType CheckType(Vector3 pos)
             {
                 return CheckType(GetTileAt(pos));
@@ -160,30 +135,9 @@ namespace Untitled
                 return null;
             }
 
-            public TileType CheckType(Tile tile)
-            {
-                if (tile != null)
-                {
-                    string asset_name = tile.sprite.name;
-                    if (asset_name.ToLower().Contains("coal"))
-                        return TileType.Coal;
-                    return TileType.Other;
-                }
-                return TileType.None;
-            }
-
             public bool ModifyTileStorage(Vector3 pos, int delta)
             {
                 return false;
-            }
-
-            public Tile GetTileAt(Vector3 pos)
-            {
-                pos = Camera.main.ScreenToWorldPoint(pos);
-                pos.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                Debug.Log("Converted Coords: " + gridCoords);
-                return tilemap.GetTile<Tile>(gridCoords);                
             }
 
             public Vector3 CastWorldCoordsToTile(Vector3 pos)

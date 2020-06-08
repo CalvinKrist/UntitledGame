@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 322195041}
   - component: {fileID: 322195042}
   - component: {fileID: 322195044}
+  - component: {fileID: 322195045}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -167,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   STARTING_POWER: 0
   STARTING_MONEY: 10000
+  STARTING_COAL: 0
 --- !u!4 &322195043
 Transform:
   m_ObjectHideFlags: 0
@@ -195,8 +197,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn: {fileID: -1136805300246908738, guid: 47084e6ee216a1e45a92f3fae8719220,
     type: 3}
-  bank: {fileID: 322195041}
+  wallet: {fileID: 322195041}
   TileMapName: Tilemap
+--- !u!114 &322195045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322195040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026bd8283e824f14a819847052edde0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileConfig: {fileID: 11400000, guid: 0f051cd542e83cf4cb69c4685784894a, type: 2}
+  resourceConfig: {fileID: 11400000, guid: e5585e8c114a2d3438bafbf83f5e46ba, type: 2}
 --- !u!1 &576359048
 GameObject:
   m_ObjectHideFlags: 0
@@ -6520,7 +6536,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -50, y: -42, z: 0}
   m_Size: {x: 58, y: 42, z: 3}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: -1}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -6552,22 +6568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 715819537}
-  grid: {fileID: 0}
---- !u!114 &715819539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715819534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bdcaf538992f0449a87999b84319b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toSpawn: {fileID: -1136805300246908738, guid: 47084e6ee216a1e45a92f3fae8719220,
-    type: 3}
-  wallet: {fileID: 322195041}
 --- !u!1 &743714228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6621,7 +6621,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.140692
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6644,8 +6644,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743714228}
-  m_LocalRotation: {x: -0.02580106, y: -0.021894252, z: 0.0005652436, w: -0.99942714}
-  m_LocalPosition: {x: -4.4818883, y: -9.979116, z: -12.05038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: -11.6, z: -17.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
