@@ -13,6 +13,7 @@ namespace Untitled
 {
     namespace Tiles
     {
+
         public enum TileType
         {
             Coal,
@@ -25,14 +26,14 @@ namespace Untitled
         {
             private float val;
 			
-			public void AddResources(ResourceType type, float count) {
-				val += count;
-			}
-			
-			public float GetResourceCount(ResourceType type) {
-				return val;
-			}
-            
+            public void AddResources(ResourceType type, float count) {
+              val += count;
+            }
+
+            public float GetResourceCount(ResourceType type) {
+              return val;
+            }
+
             public ResourceTile(float startingVal)
             {
                 val = startingVal;
@@ -72,21 +73,53 @@ namespace Untitled
                 }
             }
 
-            private int FlatIndex(Vector3Int pos)
+            private Tile GetTileAt(Vector3 pos)
             {
-                return pos.x * tilemap.cellBounds.y + pos.y;
+                pos = Camera.main.ScreenToWorldPoint(pos);
+                pos.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
+                Debug.Log("Converted Coords: " + gridCoords);
+                return tilemap.GetTile<Tile>(gridCoords);
             }
 
-            private int FlatIndex(Vector2Int pos)
-            {
-                return pos.x * tilemap.cellBounds.y + pos.y;
-            }
-
+            /*** CheckType ***/
             public TileType CheckType(Vector3 pos)
             {
                 return CheckType(GetTileAt(pos));
             }
 
+            public TileType CheckType(Tile tile)
+            {
+                if (tile != null)
+                {
+                    string asset_name = tile.sprite.name;
+                    if (asset_name.ToLower().Contains("coal"))
+                        return TileType.Coal;
+                    return TileType.Other;
+                }
+                return TileType.None;
+            }
+            /*** End CheckType ***/
+
+            /*** FlatIndex ***/
+
+            private int FlatIndex(Vector3Int pos)
+            {
+                return FlatIndex(pos.x, pos.y);
+            }
+
+            private int FlatIndex(Vector2Int pos)
+            {
+                return FlatIndex(pos.x, pos.y);
+            }
+
+            private int FlatIndex(int x, int y)
+            {
+                return x * tilemap.cellBounds.y + y;
+            }
+            /*** End FlatIndex ***/
+
+            /*** GetValueAt ***/
             public float GetValueAt(Vector3 pos)
             {
                 pos = Camera.main.ScreenToWorldPoint(pos);
