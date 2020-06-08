@@ -8,14 +8,14 @@ namespace Untitled
 {
     namespace Resource
     {
-        public class ResourceStorage : MonoBehaviour
+        public class ResourceStorage : MonoBehaviour, IResourceStorage
         {
 
             private Dictionary<ResourceType, float> resources;
 
             public StorageInitializer initializer = null;
 
-            void Awake()
+            void Start()
             {
                 resources = new Dictionary<ResourceType, float>();
 

@@ -10,6 +10,7 @@ namespace Untitled
 {
     namespace Tiles
     {
+
         public class TileManager : MonoBehaviour
         {
             public Dictionary<ResourceType, int> worldStartingResources;
@@ -53,6 +54,7 @@ namespace Untitled
             }
 
             /*** CheckType ***/
+			
             public TileType CheckType(Vector3 pos)
             {
                 return CheckType(GetTileAt(pos));
@@ -72,6 +74,7 @@ namespace Untitled
             /*** End CheckType ***/
 
             /*** FlatIndex ***/
+
             private int FlatIndex(Vector3Int pos)
             {
                 return FlatIndex(pos.x, pos.y);
@@ -107,15 +110,41 @@ namespace Untitled
                 ResourceTile tile;
                 if (storageMap.TryGetValue(pos, out tile))
                 {
-                    return tile.Value;
+                    return tile.GetResourceCount(ResourceType.None);
                 } 
                 else
                 {
                     return 0;
                 }
             }
-            /*** End GetValueAt ***/
-            
+			
+			public ResourceTile GetResourceTileAtWorldCoords(Vector3 worldCoords)
+            {
+				worldCoords = Camera.main.ScreenToWorldPoint(worldCoords);
+                worldCoords.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(worldCoords);
+				int index = FlatIndex(gridCoords);
+				
+                ResourceTile tile;
+                if (storageMap.TryGetValue(index, out tile)) 
+                    return tile;
+                
+                return null;
+            }
+
+            public bool ModifyTileStorage(Vector3 pos, int delta)
+            {
+                return false;
+            }
+
+            public Vector3 CastWorldCoordsToTile(Vector3 pos)
+            {
+                pos = Camera.main.ScreenToWorldPoint(pos);
+                pos.z = 0;
+                Vector3Int gridCoords = tilemap.WorldToCell(pos);
+                return tilemap.CellToWorld(gridCoords);
+            }
+
         }
     }
 }

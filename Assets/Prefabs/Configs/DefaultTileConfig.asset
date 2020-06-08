@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05611c4aa05aeba459550b10ba21c325, type: 3}
   m_Name: DefaultTileConfig
   m_EditorClassIdentifier: 
-  startingCoalValue: 69
+  startingCoalValue: 1
   resourceTiles: 00000000
