@@ -7,8 +7,8 @@
             Money,
             Power,
             Coal,
+			Population,
             None
         }
-
     }
 }

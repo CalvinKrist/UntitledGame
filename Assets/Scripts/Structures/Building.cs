@@ -5,6 +5,7 @@ using UnityEngine;
 using Untitled.Resource;
 using Untitled.Tiles;
 
+[RequireComponent(typeof(ResourceStorage))]
 public class Building : MonoBehaviour
 {
     // Cost to place
