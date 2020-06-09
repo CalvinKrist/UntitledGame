@@ -12,22 +12,22 @@ using Untitled.Resource;
 * Uses the Singleton pattern so other managers, UIs,
 * and buildings can change their pops
 */
-public class PoplationManager : MonoBehaviour
+public class PopulationManager : MonoBehaviour
 {
 	
 	#region SINGLETON PATTERN
-	public static PoplationManager _instance;
-	public static PoplationManager Instance
+	public static PopulationManager _instance;
+	public static PopulationManager Instance
 	{
 	 get {
 		 if (_instance == null)
 		 {
-			 _instance = GameObject.FindObjectOfType<PoplationManager>();
+			 _instance = GameObject.FindObjectOfType<PopulationManager>();
 			 
 			 if (_instance == null)
 			 {
 				 GameObject container = new GameObject("GameController");
-				 _instance = container.AddComponent<PoplationManager>();
+				 _instance = container.AddComponent<PopulationManager>();
 			 }
 		 }
 	 
