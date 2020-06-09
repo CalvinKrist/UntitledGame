@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 69
   powerCost: 0
-  placeableTiles: 00000000
+  placeableTiles: 0000000000000000
   generatedResourceType: 1
   resourceGenerationRate: 60
   resourceInputType: 2
