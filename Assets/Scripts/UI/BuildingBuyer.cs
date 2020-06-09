@@ -22,17 +22,13 @@ public class BuildingBuyer : MonoBehaviour
 	private void Spawn(Vector3 position)
 	{
 		float balance = wallet.GetResourceCount(ResourceType.Money);
-		if(balance < toSpawn.cost)
-			Debug.Log("not enough money to place");
-		else
+		if(balance >= toSpawn.cost)
 		{
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
 			var created = Instantiate(toSpawn);
 			created.transform.position = tileManager.CastWorldCoordsToTile(position);
 			created.GetComponent<Building>().destinationStorage = wallet;
 			created.GetComponent<Building>().inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
-			
-			Debug.Log(created.GetComponent<Building>().inputStorage);
 		}
 	}
 
@@ -41,8 +37,6 @@ public class BuildingBuyer : MonoBehaviour
 		if(Input.GetMouseButtonDown(0))
 		{
 			var mousePos = Input.mousePosition;
-			
-			Debug.Log(tileManager.CheckType(mousePos));
 
 			var tileType = tileManager.CheckType(mousePos);
 			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType))
