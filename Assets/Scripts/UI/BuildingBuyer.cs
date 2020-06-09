@@ -14,6 +14,8 @@ public class BuildingBuyer : MonoBehaviour
 
 	private TileManager tileManager;
 
+	private bool _placing = false;
+
 	public void Start()
 	{
 		tileManager = GameObject.Find(TileMapName).GetComponent<TileManager>();
@@ -32,15 +34,21 @@ public class BuildingBuyer : MonoBehaviour
 		}
 	}
 
+	public void StartPlacing()
+	{
+		_placing = true;
+	}
+
 	public void Update()
 	{
-		if(Input.GetMouseButtonDown(0))
+		if(_placing && Input.GetMouseButtonDown(0))
 		{
 			var mousePos = Input.mousePosition;
 
 			var tileType = tileManager.CheckType(mousePos);
 			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType))
 				Spawn(mousePos);
+			_placing = false;
 		}
 	}
 }
