@@ -1,9 +1,14 @@
-﻿namespace ResourceTypes {
-
-    public enum ResourceType
+﻿namespace Untitled
+{
+    namespace Resource
     {
-        Money,
-        Power
+        public enum ResourceType
+        {
+            Money,
+            Power,
+            Coal,
+			Population,
+            None
+        }
     }
-
 }
