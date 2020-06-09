@@ -49,7 +49,6 @@ namespace Untitled
                 pos = Camera.main.ScreenToWorldPoint(pos);
                 pos.z = 0;
                 Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                Debug.Log("Converted Coords: " + gridCoords);
                 return tilemap.GetTile<Tile>(gridCoords);
             }
 
