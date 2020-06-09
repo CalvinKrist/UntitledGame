@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Untitled.Tiles;
 using UnityEngine.Tilemaps;
+using Untitled;
 
 public class BuildingBuyer : MonoBehaviour
 {
@@ -34,21 +35,23 @@ public class BuildingBuyer : MonoBehaviour
 		}
 	}
 
-	public void StartPlacing()
-	{
-		_placing = true;
-	}
-
 	public void Update()
 	{
-		if(_placing && Input.GetMouseButtonDown(0))
+		if(Player.Instance.state == PlayerState.Placing && Input.GetMouseButtonDown(0))
 		{
 			var mousePos = Input.mousePosition;
 
 			var tileType = tileManager.CheckType(mousePos);
-			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType))
+			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType)) {
 				Spawn(mousePos);
-			_placing = false;
+				Player.Instance.OnStateChange(PlayerState.Selecting);
+			}
+		
 		}
+	}
+	
+	public void SetBuilding(Building newBuilding) 
+	{
+		toSpawn = newBuilding;
 	}
 }
