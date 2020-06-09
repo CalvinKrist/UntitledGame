@@ -9,6 +9,16 @@ public class BuildingBuyer : MonoBehaviour
 {
     public Building toSpawn;
 	[SerializeField] private ResourceStorage wallet;
+
+	public string TileMapName = "Tilemap";
+
+	private TileManager tileManager;
+
+	public void Start()
+	{
+		tileManager = GameObject.Find(TileMapName).GetComponent<TileManager>();
+	}
+
 	private void Spawn(Vector3 position)
 	{
 		float balance = wallet.GetResourceCount(ResourceType.Money);
@@ -18,33 +28,25 @@ public class BuildingBuyer : MonoBehaviour
 		{
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
 			var created = Instantiate(toSpawn);
-			created.transform.position = position;
-			created.GetComponent<ResourceGenerator>().destination = wallet;
+			created.transform.position = tileManager.CastWorldCoordsToTile(position);
+			created.GetComponent<Building>().destinationStorage = wallet;
+			created.GetComponent<Building>().inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+			
+			Debug.Log(created.GetComponent<Building>().inputStorage);
 		}
-	}
-
-	private Vector3? ClickToGround()
-	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.NameToLayer("Terrain")))
-		{
-			return hit.point;
-		}
-		return null;
 	}
 
 	public void Update()
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
-			Vector3 pos = Input.mousePosition;
-			Debug.Log("Mouse Position: " + pos);
-			TileManager t = GetComponent<TileManager>();
-			Debug.Log("TileType: " + t.CheckType(pos));
-			Debug.Log("Storage Value: " + t.GetValueAt(pos));
-			pos.z = 0;
-			this.Spawn(pos);
+			var mousePos = Input.mousePosition;
+			
+			Debug.Log(tileManager.CheckType(mousePos));
+
+			var tileType = tileManager.CheckType(mousePos);
+			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType))
+				Spawn(mousePos);
 		}
 	}
 }
