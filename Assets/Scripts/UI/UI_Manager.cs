@@ -7,6 +7,27 @@ using Untitled.Resource;
 public class UI_Manager : MonoBehaviour
 {
 	
+	#region SINGLETON PATTERN
+	public static UI_Manager _instance;
+	public static UI_Manager Instance
+	{
+	 get {
+		 if (_instance == null)
+		 {
+			 _instance = GameObject.FindObjectOfType<UI_Manager>();
+			 
+			 if (_instance == null)
+			 {
+				 GameObject container = new GameObject("UI");
+				 _instance = container.AddComponent<UI_Manager>();
+			 }
+		 }
+	 
+		 return _instance;
+	 }
+	}
+	#endregion
+	
 	public float UIRefreshRate = 0.05f;
 	
 	[Header("Resource Palel")]

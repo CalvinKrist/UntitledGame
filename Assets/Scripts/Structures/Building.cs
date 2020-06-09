@@ -4,6 +4,8 @@ using System.Threading;
 using UnityEngine;
 using Untitled.Resource;
 using Untitled.Tiles;
+using Untitled.Configs;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ResourceStorage))]
 public class Building : MonoBehaviour
@@ -29,7 +31,7 @@ public class Building : MonoBehaviour
     private float depletionPerSec;
     public IResourceStorage inputStorage;
 
-    void Start()
+    void Awake()
     {
         // Set resource rates per second
         if (generatedResourceType != ResourceType.None)
@@ -52,5 +54,24 @@ public class Building : MonoBehaviour
                 inputStorage.AddResources(resourceInputType, -depletionPerSec * Time.deltaTime);
             }
         } 
+    }
+	
+	/*************************
+	****  Event Handlers  ****
+	**************************/
+	void OnMouseEnter()
+    {
+        var mat = GetComponent<Renderer>().material;
+		mat.SetFloat("_XWidth", 0.7f);
+		mat.SetFloat("_YWidth", 0.7f);
+		Debug.Log("entered");
+    }
+
+	void OnMouseExit()
+    {
+        var mat = GetComponent<Renderer>().material;
+		mat.SetFloat("_XWidth", 0f);
+		mat.SetFloat("_YWidth", 0f);
+		Debug.Log("exited");
     }
 }

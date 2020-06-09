@@ -8,14 +8,12 @@ using Untitled;
 
 public class BuildingBuyer : MonoBehaviour
 {
-    public Building toSpawn;
+    private Building toSpawn;
 	[SerializeField] private ResourceStorage wallet;
 
 	public string TileMapName = "Tilemap";
 
 	private TileManager tileManager;
-
-	private bool _placing = false;
 
 	public void Start()
 	{

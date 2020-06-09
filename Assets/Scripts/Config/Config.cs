@@ -11,6 +11,8 @@ namespace Untitled
         {
             private static Config instance;
             public static Config Instance { get { return instance; } }
+			
+			public UI_Manager uiManager;
 
             private void Awake()
             {
