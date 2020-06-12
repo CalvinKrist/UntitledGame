@@ -41,25 +41,34 @@ public class PopulationManager : MonoBehaviour
 	
 	public ResourceStorage playerStorage;
 	
-	public float moneyPerPop = 20; // measured per minute
-	private float moneyGenerationRate; // generation per second
-	
 	public void Start() {
 		totalPopulation = (int)playerStorage.GetResourceCount(ResourceType.Population);
 		assignedPopulation = 0;
-		moneyGenerationRate = moneyPerPop / 60;
 	}
 	
-	public bool AssignWorker(Building destination) {
-		return false;
+	public static bool AssignWorker(Building destination) {
+		PopulationManager pop = PopulationManager.Instance;
+		ResourceStorage destStorage = destination.GetComponent<ResourceStorage>();
+		
+		if(pop.playerStorage.GetResourceCount(ResourceType.Population) < 1 || destStorage.GetResourceCount(ResourceType.Population) > destination.maxPops - 1)
+			return false;
+		
+		pop.playerStorage.AddResources(ResourceType.Population, -1);
+		destStorage.AddResources(ResourceType.Population, 1);
+		
+		return true;
 	}
 	
-	public bool UnassignWorker(Building destination) {
-		return false;
-	}
-	
-	public void Update() {
-		playerStorage.AddResources(ResourceType.Money, 
-			moneyGenerationRate * Time.deltaTime * assignedPopulation);
+	public static bool UnassignWorker(Building destination) {
+		PopulationManager pop = PopulationManager.Instance;
+		ResourceStorage destStorage = destination.GetComponent<ResourceStorage>();
+		
+		if(destStorage.GetResourceCount(ResourceType.Population) < 1)
+			return false;
+		
+		pop.playerStorage.AddResources(ResourceType.Population, 1);
+		destStorage.AddResources(ResourceType.Population, -1);
+		
+		return true;
 	}
 }
