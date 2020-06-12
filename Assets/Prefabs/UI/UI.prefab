@@ -2884,7 +2884,7 @@ GameObject:
   - component: {fileID: 3679272902763115781}
   - component: {fileID: 8257151272388984944}
   m_Layer: 5
-  m_Name: Title
+  m_Name: BuildingInspectorTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

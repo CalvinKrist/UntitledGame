@@ -19,6 +19,7 @@ namespace Untitled
 			public float UIRefreshRate = 0.1f;
 			
 			// UI elements
+			private Text title;
 			private Text moneyLabel;
 			private Text powerLabel;
 			private Text populationLabel;
@@ -31,6 +32,7 @@ namespace Untitled
 				base.Awake();
 				
 				// Find UI elements
+				title = GameObject.Find("BuildingInspectorTitle").GetComponent<Text>();
 				moneyLabel = GameObject.Find("MoneyIncomeLabel").GetComponent<Text>();
 				powerLabel = GameObject.Find("PowerDrainLabel").GetComponent<Text>();
 				populationLabel = GameObject.Find("PopManagementLabel").GetComponent<Text>();
@@ -52,6 +54,7 @@ namespace Untitled
 					if(!canvas.enabled)
 						break;
 					
+					title.text = building.name;
 					powerLabel.text = (building.GetPowerDrain()).ToString();
 					moneyLabel.text = (building.GetMoneyIncome()).ToString();
 					ResourceStorage storage = building.GetComponent<ResourceStorage>();
