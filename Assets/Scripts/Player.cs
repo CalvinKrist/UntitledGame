@@ -38,12 +38,27 @@ namespace Untitled
 		}
 		#endregion
 		
+		
+		private ResourceStorage storage;
+		private List<Building> buildings;
+		
 		public PlayerState state;
 		
-		// Start is called before the first frame update
-		void Start()
+		void Awake()
 		{
 			state = PlayerState.Selecting;
+			
+			storage = GetComponent<ResourceStorage>();
+			buildings = new List<Building>();
+			
+			Building.OnBuildingCreateEvent += (Building building) => {
+				Debug.Log("building added");
+				buildings.Add(building);
+			};
+			Building.OnBuildingDestroyEvent += (Building building) => {
+				Debug.Log("building removed");
+				buildings.Remove(building);
+			};
 		}
 			
 		void Update()
@@ -53,6 +68,17 @@ namespace Untitled
 			{
 				OnStateChange(PlayerState.Selecting);
 			}
+			
+			// Update income
+			float incomePerSec = 0;
+			foreach(Building building in buildings)
+				incomePerSec += building.GetMoneyIncome();
+			storage.AddResources(ResourceType.Money, incomePerSec * Time.deltaTime);
+		}
+		
+		public ResourceStorage GetStorage()
+		{
+			return GetComponent<ResourceStorage>();
 		}
 			
 		/*************************

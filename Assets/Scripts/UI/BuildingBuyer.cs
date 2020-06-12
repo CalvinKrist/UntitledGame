@@ -28,8 +28,9 @@ public class BuildingBuyer : MonoBehaviour
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
 			var created = Instantiate(toSpawn);
 			created.transform.position = tileManager.CastWorldCoordsToTile(position);
-			created.GetComponent<Building>().destinationStorage = wallet;
-			created.GetComponent<Building>().inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+			Building building = created.GetComponent<Building>();
+			building.destinationStorage = wallet;
+			building.inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
 		}
 	}
 

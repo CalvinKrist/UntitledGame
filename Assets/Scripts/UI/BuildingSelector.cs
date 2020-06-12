@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Untitled;
 
+/*
+* A class attached to a button. When the button is clicked,
+* it will change the building buyer to select the new
+* building type.
+*/
+[RequireComponent(typeof(Button))]
 public class BuildingSelector : MonoBehaviour
 {
 	
