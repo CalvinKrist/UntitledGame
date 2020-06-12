@@ -105,7 +105,7 @@ MonoBehaviour:
   maxPops: 15
   placeableTiles: 00000000
   generatedResourceType: 1
-  resourceGenerationRate: 60
+  resourceGenerationRate: 100
   resourceInputType: 2
   resourceDepletionRate: 10
 --- !u!60 &4884596300031952623

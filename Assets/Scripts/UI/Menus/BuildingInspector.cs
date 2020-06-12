@@ -58,7 +58,7 @@ namespace Untitled
 					populationLabel.text = ((int)storage.GetResourceCount(ResourceType.Population)).ToString() + " / " + building.maxPops.ToString();
 					
 					if(building.generatedResourceType != ResourceType.None)
-						generatedResourceLabel.text = "tttT";
+						generatedResourceLabel.text = building.GetResourceIncome().ToString();
 					
 					yield return new WaitForSeconds(UIRefreshRate);
 				}

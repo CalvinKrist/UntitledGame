@@ -106,6 +106,11 @@ public class Building : AClickableSprite
 		return moneyGenerationRate * GetPopScalar();;
 	}
 	
+	// Returns how much resource per second the building generates
+	public float GetResourceIncome() {
+		return generationPerSec * GetPopScalar();;
+	}
+	
 	// Returns how much power the building
 	// requires from the grid to function
 	public float GetPowerDrain()
