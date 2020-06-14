@@ -40,13 +40,13 @@ namespace Untitled
 					Disable();
 			}
 			
-			public void Disable()
+			public virtual void Disable()
 			{
 				canvas.enabled = false;
 				hasMouseFocus = false;
 			}
 			
-			public void Enable()
+			public virtual void Enable()
 			{
 				canvas.enabled = true;
 			}
