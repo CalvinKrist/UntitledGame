@@ -11,7 +11,7 @@ namespace Untitled
 	namespace UI
 	{
 		[RequireComponent(typeof(Canvas))]
-		public class BuildingInspector : Dialogue
+		public class BuildingInspectorMenu : Dialogue
 		{			
 			
 			private Building building;
@@ -72,7 +72,17 @@ namespace Untitled
 			
 			private void Enable(Building building)
 			{
-				this.building = building;
+				if(building != this.building) {
+					this.building = building;
+					Destroy(customBuildingInspector);
+					
+					if (building.name == "Power Plant") {
+						customBuildingInspector = Instantiate(buildingInfoPanel);
+						customBuildingInspector.transform.SetParent(buildingInfoPanel.transform);
+						customBuildingInspector.AddComponent<PowerPlantInspector>();
+						customBuildingInspector.GetComponent<PowerPlantInspector>().SetBuilding(building);
+					}
+				}
 				
 				switch(building.generatedResourceType) {
 					case ResourceType.Money:
@@ -96,13 +106,6 @@ namespace Untitled
 						break;
 				}
 				
-				if (building.name == "Power Plant") {
-					customBuildingInspector = Instantiate(buildingInfoPanel);
-					customBuildingInspector.transform.SetParent(buildingInfoPanel.transform);
-					customBuildingInspector.AddComponent<PowerPlantInspector>();
-					customBuildingInspector.GetComponent<PowerPlantInspector>().SetBuilding(building);
-				}
-				
 				base.Enable();
 				StartCoroutine("UpdateUI");
 			}
@@ -110,7 +113,6 @@ namespace Untitled
 			public override void Disable()
 			{
 				base.Disable();
-				Destroy(customBuildingInspector);
 			}
 
 			private void OnSpriteClick(AClickableSprite sprite) 
