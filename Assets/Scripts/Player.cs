@@ -52,11 +52,9 @@ namespace Untitled
 			buildings = new List<Building>();
 			
 			Building.OnBuildingCreateEvent += (Building building) => {
-				Debug.Log("building added");
 				buildings.Add(building);
 			};
 			Building.OnBuildingDestroyEvent += (Building building) => {
-				Debug.Log("building removed");
 				buildings.Remove(building);
 			};
 		}

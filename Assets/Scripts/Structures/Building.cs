@@ -96,7 +96,7 @@ public class Building : AClickableSprite
 
             if(!(resourceInputType == ResourceType.None))
             {
-                inputStorage.AddResources(resourceInputType, -depletionPerSec * Time.deltaTime);
+                inputStorage.AddResources(resourceInputType, -depletionPerSec * Time.deltaTime * GetPopScalar());
             }
         } 
     }

@@ -19,11 +19,14 @@ namespace Untitled
 			public float UIRefreshRate = 0.1f;
 			
 			// UI elements
+			private Text title;
 			private Text moneyLabel;
 			private Text powerLabel;
 			private Text populationLabel;
 			private Text generatedResourceLabel;
 			private Image generatedResourceImage;
+			private GameObject buildingInfoPanel;
+			private GameObject customBuildingInspector;
 		
 			// Start is called before the first frame update
 			void Awake()
@@ -31,11 +34,13 @@ namespace Untitled
 				base.Awake();
 				
 				// Find UI elements
+				title = GameObject.Find("BuildingInspectorTitle").GetComponent<Text>();
 				moneyLabel = GameObject.Find("MoneyIncomeLabel").GetComponent<Text>();
 				powerLabel = GameObject.Find("PowerDrainLabel").GetComponent<Text>();
 				populationLabel = GameObject.Find("PopManagementLabel").GetComponent<Text>();
 				generatedResourceLabel = GameObject.Find("GeneratedResourceLabel").GetComponent<Text>();
 				generatedResourceImage = GameObject.Find("GeneratedResourceIcon").GetComponent<Image>();
+				buildingInfoPanel = GameObject.Find("BuildingInfoPanel");
 				
 				// Subscribe to events
 				UI_Manager.Instance.OnSpriteClickEvent += OnSpriteClick;
@@ -45,13 +50,14 @@ namespace Untitled
 			* Coroutine that periodically checks to see if resource values have updated.
 			* If so, it updates the labels in the resource bar.
 			*/
-			IEnumerator UpdateUI()
+			private IEnumerator UpdateUI()
 			{
 				for(;;) 
 				{
 					if(!canvas.enabled)
 						break;
 					
+					title.text = building.name;
 					powerLabel.text = (building.GetPowerDrain()).ToString();
 					moneyLabel.text = (building.GetMoneyIncome()).ToString();
 					ResourceStorage storage = building.GetComponent<ResourceStorage>();
@@ -59,11 +65,10 @@ namespace Untitled
 					
 					if(building.generatedResourceType != ResourceType.None)
 						generatedResourceLabel.text = building.GetResourceIncome().ToString();
-					
+										
 					yield return new WaitForSeconds(UIRefreshRate);
 				}
-			}
-				
+			}	
 			
 			private void Enable(Building building)
 			{
@@ -91,8 +96,21 @@ namespace Untitled
 						break;
 				}
 				
+				if (building.name == "Power Plant") {
+					customBuildingInspector = Instantiate(buildingInfoPanel);
+					customBuildingInspector.transform.SetParent(buildingInfoPanel.transform);
+					customBuildingInspector.AddComponent<PowerPlantInspector>();
+					customBuildingInspector.GetComponent<PowerPlantInspector>().SetBuilding(building);
+				}
+				
 				base.Enable();
 				StartCoroutine("UpdateUI");
+			}
+			
+			public override void Disable()
+			{
+				base.Disable();
+				Destroy(customBuildingInspector);
 			}
 
 			private void OnSpriteClick(AClickableSprite sprite) 
