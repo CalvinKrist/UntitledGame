@@ -15,7 +15,8 @@ public class Building : AClickableSprite
 	[Header("General Settings")]
 	public string name;
     // Cost to place
-	public int cost;
+	[field: SerializeField]
+	public int cost {get; set;}
 	public float moneyGen = 20; // measured per minute with full pop
 	private float moneyGenerationRate; // generation per second
     // How much electricity it needs to function
@@ -24,7 +25,10 @@ public class Building : AClickableSprite
 	public int maxPops;
 	private float invMaxPops; // precomputed for faster math
 	// What tiles the building can be placed on
-	public List<TileType> placeableTiles;
+	[field: SerializeField]
+	public List<TileType> placeableTiles {get; set;}
+	[field: SerializeField]
+	public Vector2 size {get; set;}
 
     // Resource output variables
     [Header("Resource Output")]
@@ -123,4 +127,5 @@ public class Building : AClickableSprite
 	****************/
 	public static event Action<Building> OnBuildingCreateEvent;
 	public static event Action<Building> OnBuildingDestroyEvent;
+	
 }

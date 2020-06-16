@@ -6,17 +6,17 @@ using Untitled;
 
 /*
 * A class attached to a button. When the button is clicked,
-* it will change the building buyer to select the new
-* building type.
+* it will change the object placer to select the new
+* object type.
 */
 [RequireComponent(typeof(Button))]
-public class BuildingSelector : MonoBehaviour
+public class ObjectSelector : MonoBehaviour
 {
 	
-	public Building building;
+	public Placeable placeableObject;
 	
 	private Player player;
-	private BuildingBuyer buyer;
+	private ObjectPlacer placer;
 	
 	private Button button;
 	private Outline outline;
@@ -27,7 +27,7 @@ public class BuildingSelector : MonoBehaviour
 		button.onClick.AddListener(OnClick);
 		
 		player = Player.Instance;
-		buyer = player.GetComponent<BuildingBuyer>();
+		placer = player.GetComponent<ObjectPlacer>();
 		
 		if(this.gameObject.GetComponent<Outline>() == null)
 		{
@@ -41,7 +41,7 @@ public class BuildingSelector : MonoBehaviour
     public void OnClick()
 	{
 		player.OnStateChange(PlayerState.Placing);
-		buyer.SetBuilding(building);
+		placer.SetObject(placeableObject);
 		Select();
 	}
 	
