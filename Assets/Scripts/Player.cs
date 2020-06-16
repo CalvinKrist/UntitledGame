@@ -4,6 +4,7 @@ using UnityEngine;
 using Untitled.Resource;
 using UnityEngine.UI;
 using System;
+using Untitled.Grid;
 
 namespace Untitled
 {
@@ -57,6 +58,9 @@ namespace Untitled
 			Building.OnBuildingDestroyEvent += (Building building) => {
 				buildings.Remove(building);
 			};
+			
+			// Access the PowerGrid manager to instantiate it
+			var gridManager = PowerGridManager.Instance;
 		}
 			
 		void Update()
