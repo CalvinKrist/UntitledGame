@@ -66,6 +66,8 @@ namespace Untitled
                     string asset_name = tile.sprite.name;
                     if (asset_name.ToLower().Contains("coal"))
                         return TileType.Coal;
+					else if (asset_name.ToLower().Contains("ground"))
+                        return TileType.Ground;
                     return TileType.Other;
                 }
                 return TileType.None;

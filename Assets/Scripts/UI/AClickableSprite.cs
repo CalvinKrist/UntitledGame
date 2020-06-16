@@ -17,7 +17,7 @@ namespace Untitled
 		
 		[RequireComponent(typeof(PolygonCollider2D))]
 		[RequireComponent(typeof(SpriteRenderer))]
-		public class AClickableSprite : MonoBehaviour
+		public class AClickableSprite : Placeable
 		{
 
 			[Header("Shader Settings")]
@@ -32,11 +32,14 @@ namespace Untitled
 
 			protected void Start()
 			{
-				mat = GetComponent<Renderer>().material;
-				mat.shader = shader;
-				
-				mat.SetFloat("_XWidth", 0f);
-				mat.SetFloat("_YWidth", 0f);	
+				if(outlineOnHover) 
+				{
+					mat = GetComponent<Renderer>().material;
+					mat.shader = shader;
+					
+					mat.SetFloat("_XWidth", 0f);
+					mat.SetFloat("_YWidth", 0f);
+				}				
 			}
 			
 			public SpriteType GetType()
@@ -46,14 +49,20 @@ namespace Untitled
 			
 			void OnMouseEnter()
 			{
-				mat.SetFloat("_XWidth", outlineWidth);
-				mat.SetFloat("_YWidth", outlineWidth);
+				if(outlineOnHover) 
+				{
+					mat.SetFloat("_XWidth", outlineWidth);
+					mat.SetFloat("_YWidth", outlineWidth);
+				}
 			}
 
 			void OnMouseExit()
 			{
-				mat.SetFloat("_XWidth", 0f);
-				mat.SetFloat("_YWidth", 0f);
+				if(outlineOnHover) 
+				{
+					mat.SetFloat("_XWidth", 0f);
+					mat.SetFloat("_YWidth", 0f);
+				}
 			}
 			
 			void OnMouseDown()

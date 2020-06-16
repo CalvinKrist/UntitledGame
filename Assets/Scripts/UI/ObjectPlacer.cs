@@ -1,14 +1,15 @@
 ﻿using Untitled.Resource;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Untitled.Tiles;
 using UnityEngine.Tilemaps;
 using Untitled;
 
-public class BuildingBuyer : MonoBehaviour
+public class ObjectPlacer : MonoBehaviour
 {
-    private Building toSpawn;
+    private Placeable toSpawn;
 	[SerializeField] private ResourceStorage wallet;
 
 	public string TileMapName = "Tilemap";
@@ -22,15 +23,21 @@ public class BuildingBuyer : MonoBehaviour
 
 	private void Spawn(Vector3 position)
 	{
+		Debug.Log("PLACING AND SPAWNING");
 		float balance = wallet.GetResourceCount(ResourceType.Money);
 		if(balance >= toSpawn.cost)
 		{
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
-			var created = Instantiate(toSpawn);
+			var created = Instantiate(toSpawn.gameObject);
 			created.transform.position = tileManager.CastWorldCoordsToTile(position);
+			
+			// Configure building if it exists
 			Building building = created.GetComponent<Building>();
-			building.destinationStorage = wallet;
-			building.inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+			if(building != null)
+			{
+				building.destinationStorage = wallet;
+				building.inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+			}
 		}
 	}
 
@@ -41,7 +48,7 @@ public class BuildingBuyer : MonoBehaviour
 			var mousePos = Input.mousePosition;
 
 			var tileType = tileManager.CheckType(mousePos);
-			if (tileManager && tileType == TileType.Coal && toSpawn.placeableTiles.Contains(tileType)) {
+			if (tileManager && toSpawn.placeableTiles.Contains(tileType)) {
 				Spawn(mousePos);
 				Player.Instance.OnStateChange(PlayerState.Selecting);
 			}
@@ -49,8 +56,8 @@ public class BuildingBuyer : MonoBehaviour
 		}
 	}
 	
-	public void SetBuilding(Building newBuilding) 
+	public void SetObject(Placeable newObject) 
 	{
-		toSpawn = newBuilding;
+		toSpawn = newObject;
 	}
 }
