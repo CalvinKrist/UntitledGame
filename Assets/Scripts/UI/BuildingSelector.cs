@@ -34,6 +34,7 @@ public class BuildingSelector : MonoBehaviour
 			outline = this.gameObject.AddComponent<Outline>();
 		}
 		outline.effectDistance = new Vector2(2, 2);
+		outline.effectColor  = new Color(0, 0, 0);
 		outline.enabled = false;
 	}
 	
