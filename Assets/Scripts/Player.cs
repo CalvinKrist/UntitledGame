@@ -15,7 +15,7 @@ namespace Untitled
 	
 	[RequireComponent(typeof(ResourceStorage))]
 	[RequireComponent(typeof(PopulationManager))]
-	[RequireComponent(typeof(BuildingBuyer))]
+	[RequireComponent(typeof(ObjectPlacer))]
 	public class Player : MonoBehaviour
 	{
 		#region SINGLETON PATTERN
