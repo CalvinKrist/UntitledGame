@@ -4,7 +4,8 @@ using UnityEngine;
 using Untitled.Resource;
 using UnityEngine.UI;
 using System;
-using Untitled.Grid;
+using Untitled.Power;
+using Untitled.Utils;
 
 namespace Untitled
 {
@@ -13,6 +14,7 @@ namespace Untitled
 		Selecting
 	};
 	
+	[RequireComponent(typeof(GridUtils))]
 	[RequireComponent(typeof(ResourceStorage))]
 	[RequireComponent(typeof(PopulationManager))]
 	[RequireComponent(typeof(BuildingBuyer))]
@@ -46,7 +48,7 @@ namespace Untitled
 		public PlayerState state;
 		
 		void Awake()
-		{
+		{			
 			state = PlayerState.Selecting;
 			
 			storage = GetComponent<ResourceStorage>();

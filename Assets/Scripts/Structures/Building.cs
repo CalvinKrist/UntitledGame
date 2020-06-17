@@ -8,6 +8,7 @@ using Untitled.Configs;
 using UnityEngine.UI;
 using Untitled.UI;
 using System;
+using Untitled.Utils;
 
 [RequireComponent(typeof(ResourceStorage))]
 public class Building : AClickableSprite
@@ -70,6 +71,8 @@ public class Building : AClickableSprite
 		base.Start();
 		// Invoke building created event
 		OnBuildingCreateEvent?.Invoke(this);
+		
+		Debug.Log(GridUtils.GetGridCoords(this.gameObject.transform.position));
 	}
 	
 	void OnDestroy() 
