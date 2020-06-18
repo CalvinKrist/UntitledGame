@@ -8,6 +8,7 @@ using Untitled.Configs;
 using UnityEngine.UI;
 using Untitled.UI;
 using System;
+using Untitled.Utils;
 
 [RequireComponent(typeof(ResourceStorage))]
 public class Building : AClickableSprite
@@ -72,12 +73,15 @@ public class Building : AClickableSprite
 	void Start()
 	{
 		base.Start();
+		
 		// Invoke building created event
 		OnBuildingCreateEvent?.Invoke(this);
 	}
 	
 	void OnDestroy() 
 	{
+		base.OnDestroy();
+		
 		while(storage.GetResourceCount(ResourceType.Population) > 0)
 			PopulationManager.UnassignWorker(this);
 		

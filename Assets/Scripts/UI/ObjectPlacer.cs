@@ -6,6 +6,7 @@ using UnityEngine;
 using Untitled.Tiles;
 using UnityEngine.Tilemaps;
 using Untitled;
+using Untitled.Utils;
 
 public class ObjectPlacer : MonoBehaviour
 {
@@ -21,22 +22,25 @@ public class ObjectPlacer : MonoBehaviour
 		tileManager = GameObject.Find(TileMapName).GetComponent<TileManager>();
 	}
 
-	private void Spawn(Vector3 position)
+	private void Spawn(Coords coords)
 	{
-		Debug.Log("PLACING AND SPAWNING");
 		float balance = wallet.GetResourceCount(ResourceType.Money);
 		if(balance >= toSpawn.cost)
 		{
+			// Player pays the cost
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
-			var created = Instantiate(toSpawn.gameObject);
-			created.transform.position = tileManager.CastWorldCoordsToTile(position);
+			
+			// Create the placeable at the specified position
+			// so that it's position is already set when PlaceableCreated
+			// events are generated
+			var created = Instantiate(toSpawn.gameObject, coords.AsTile(), Quaternion.Euler(0,0,0));
 			
 			// Configure building if it exists
 			Building building = created.GetComponent<Building>();
 			if(building != null)
 			{
 				building.destinationStorage = wallet;
-				building.inputStorage = tileManager.GetResourceTileAtWorldCoords(position);
+				building.inputStorage = GridUtils.GetResourceTileAt(coords);
 			}
 		}
 	}
@@ -45,11 +49,11 @@ public class ObjectPlacer : MonoBehaviour
 	{
 		if(Player.Instance.state == PlayerState.Placing && Input.GetMouseButtonDown(0))
 		{
-			var mousePos = Input.mousePosition;
+			Coords coords =  GridUtils.WorldToCoords(Input.mousePosition);
 
-			var tileType = tileManager.CheckType(mousePos);
+			var tileType = GridUtils.GetTileTypeAt(coords);
 			if (tileManager && toSpawn.placeableTiles.Contains(tileType)) {
-				Spawn(mousePos);
+				Spawn(coords);
 				Player.Instance.OnStateChange(PlayerState.Selecting);
 			}
 		

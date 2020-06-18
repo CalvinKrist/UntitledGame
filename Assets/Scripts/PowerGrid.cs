@@ -6,7 +6,7 @@ using Untitled.Tiles;
 
 namespace Untitled
 {
-	namespace Grid
+	namespace Power
 	{
 		public class PowerGridManager
 		{
