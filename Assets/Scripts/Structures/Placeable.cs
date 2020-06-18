@@ -28,11 +28,7 @@ public class Placeable : MonoBehaviour
 
 		for(int xOff = xStart; xOff <= xEnd; xOff++)
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
-				// -y offset cuz that worked for power plant
-				// x might need to be negative as well
-				// or it might be quadrant dependent
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
-			
 		
 		OnPlaceableCreateEvent?.Invoke(this);
 	}
