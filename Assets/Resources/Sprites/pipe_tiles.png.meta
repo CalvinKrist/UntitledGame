@@ -41,6 +41,33 @@ TextureImporter:
   - first:
       213: -1729218811930035615
     second: pipe_tiles_6
+  - first:
+      213: 5640722084546764340
+    second: pipe_tiles_6
+  - first:
+      213: -3062323513051583302
+    second: pipe_tiles_7
+  - first:
+      213: 9094944677816264197
+    second: pipe_tiles_8
+  - first:
+      213: -3792246779933663342
+    second: pipe_tiles_9
+  - first:
+      213: -7368799661587016573
+    second: pipe_tiles_10
+  - first:
+      213: -3774001498430694421
+    second: pipe_tiles_7
+  - first:
+      213: 8059986416717697334
+    second: pipe_tiles_8
+  - first:
+      213: 2995647387022575721
+    second: pipe_tiles_9
+  - first:
+      213: -562361028984827308
+    second: pipe_tiles_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -142,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -163,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -184,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -205,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -226,7 +253,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 128
         width: 128
         height: 128
       alignment: 0
@@ -247,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 128
         width: 128
         height: 128
       alignment: 0
@@ -268,6 +295,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e5c1e99ded74e40800000000000000
+      internalID: 5640722084546764340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_tiles_7
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 128
         height: 128
@@ -278,8 +326,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16abcfff6a49008e0800000000000000
-      internalID: -1729218811930035615
+      spriteID: beb1f38f1ad00abc0800000000000000
+      internalID: -3774001498430694421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_tiles_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6319eee31f2dadf60800000000000000
+      internalID: 8059986416717697334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_tiles_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968cec74d6da29920800000000000000
+      internalID: 2995647387022575721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_tiles_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45216d7af971238f0800000000000000
+      internalID: -562361028984827308
       vertices: []
       indices: 
       edges: []

@@ -50,17 +50,17 @@ namespace Untitled
 				placeableMap = new Dictionary<Coords, Placeable>();
 				
 				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
-					Coords coords = new Coords(placeable.gameObject.transform.position);
-					placeableMap[coords] = placeable;
+					Debug.Log("Added: " + placeable.coords.AsGrid());
+					placeableMap[placeable.coords] = placeable;
 				};
 				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
-					Coords coords = new Coords(placeable.gameObject.transform.position);
-					placeableMap.Remove(coords);
+					placeableMap.Remove(placeable.coords);
 				};
 			}
 			
 			public static Placeable GetPlaceableAt(Coords coords)
 			{
+				Debug.Log(coords.AsGrid());
 				if(Instance.placeableMap.ContainsKey(coords))
 					return Instance.placeableMap[coords];
 				return null;

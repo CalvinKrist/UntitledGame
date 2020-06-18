@@ -117,6 +117,24 @@ namespace Untitled
 				return GridOffsetToTileOffset(gridCoords) - new Coords(coords.AsTile());
 			}
 			
+			// Override for Vector2 cuz it get's autocasted to Vector3 otherwise
+			public static Coords operator +(Coords coords, Vector2 gridCoords)
+			{
+				throw new System.InvalidOperationException("Vector2 not supported: use Vector2Int (gridCoords) or Vector3 (tileCoords)");
+			}
+			public static Coords operator +(Vector2 gridCoords, Coords coords)
+			{
+				throw new System.InvalidOperationException("Vector2 not supported: use Vector2Int (gridCoords) or Vector3 (tileCoords)");
+			}
+			public static Coords operator -(Coords coords, Vector2 gridCoords)
+			{
+				throw new System.InvalidOperationException("Vector2 not supported: use Vector2Int (gridCoords) or Vector3 (tileCoords)");
+			}
+			public static Coords operator -(Vector2 gridCoords, Coords coords)
+			{
+				throw new System.InvalidOperationException("Vector2 not supported: use Vector2Int (gridCoords) or Vector3 (tileCoords)");
+			}
+			
 			private static Vector3 GridOffsetToTileOffset(Vector2Int gridOffset)
 			{
 				var dx = GridUtils.Instance.dx.x;
@@ -128,7 +146,7 @@ namespace Untitled
 				
 				// Apply x portion of grid offset
 				offset += new Vector3(dx * gridOffset.x, dy * gridOffset.x, 0);
-				
+								
 				return offset;
 			}
 			

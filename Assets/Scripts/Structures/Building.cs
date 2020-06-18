@@ -11,6 +11,7 @@ using System;
 using Untitled.Utils;
 
 [RequireComponent(typeof(ResourceStorage))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Building : Placeable
 {
 	[Header("General Settings")]
