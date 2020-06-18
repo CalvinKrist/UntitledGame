@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5313167915484735412}
   - component: {fileID: 4366916772400630162}
   - component: {fileID: 4884596300031952623}
+  - component: {fileID: 1180555105314282182}
   m_Layer: 0
   m_Name: PowerPlantTemplate
   m_TagString: Untagged
@@ -98,9 +99,6 @@ MonoBehaviour:
   cost: 69
   placeableTiles: 00000000
   size: {x: 0, y: 0}
-  outlineOnHover: 1
-  outlineWidth: 0.75
-  shader: {fileID: -6465566751694194690, guid: 8f7c9ffe11dd98249bd6bc4a107b9ce2, type: 3}
   name: Power Plant
   <cost>k__BackingField: 0
   moneyGen: 60
@@ -185,3 +183,18 @@ PolygonCollider2D:
       - {x: -0.001953125, y: -0.13476562}
       - {x: 0.00390625, y: -0.109375}
       - {x: -0.005859375, y: -0.08984375}
+--- !u!114 &1180555105314282182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990710767400602449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f5e796a3df03942859d50c2cb9e89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDialogue: 1
+  outlineWidth: 1
+  shader: {fileID: -6465566751694194690, guid: 8f7c9ffe11dd98249bd6bc4a107b9ce2, type: 3}

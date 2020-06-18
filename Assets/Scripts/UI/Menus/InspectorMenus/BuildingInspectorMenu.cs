@@ -115,10 +115,10 @@ namespace Untitled
 				base.Disable();
 			}
 
-			private void OnSpriteClick(AClickableSprite sprite) 
+			private void OnSpriteClick(ClickableSprite sprite) 
 			{
-				if(!canvas.enabled && sprite.GetType() == SpriteType.Building)
-					Enable((Building)sprite);
+				if(!canvas.enabled && sprite.gameObject.GetComponent<Building>() != null)
+					Enable(sprite.gameObject.GetComponent<Building>());
 			}
 			
 			/**************************
