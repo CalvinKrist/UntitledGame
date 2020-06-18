@@ -50,7 +50,6 @@ namespace Untitled
 				placeableMap = new Dictionary<Coords, Placeable>();
 				
 				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
-					Debug.Log("Added: " + placeable.coords.AsGrid());
 					placeableMap[placeable.coords] = placeable;
 				};
 				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
@@ -60,7 +59,6 @@ namespace Untitled
 			
 			public static Placeable GetPlaceableAt(Coords coords)
 			{
-				Debug.Log(coords.AsGrid());
 				if(Instance.placeableMap.ContainsKey(coords))
 					return Instance.placeableMap[coords];
 				return null;

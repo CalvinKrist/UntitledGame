@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Untitled.Tiles;
+using Untitled.Utils;
 
 namespace Untitled
 {
@@ -10,12 +11,10 @@ namespace Untitled
 	{
 		public class PowerGridManager
 		{
-			
-			private Vector3 dx = new Vector3(0.5f, 0, 0);
-			private Vector3 dy = new Vector3(0, 0.25f, 0);
-			
-			// Sparse maps to track grid info
-			private Dictionary<Vector3, PowerGrid> posToGridMap;
+			// Sparse maps to track grid info. Used to determine 
+			// if a grid element is on a power grid, and if so,
+			// which one.
+			private Dictionary<Coords, PowerGrid> posToGridMap;
 			private List<PowerGrid> grids;
 			
 			#region SINGLETON PATTERN
@@ -29,11 +28,11 @@ namespace Untitled
 
 			private PowerGridManager()
 			{
-				posToGridMap = new Dictionary<Vector3, PowerGrid>();
+				posToGridMap = new Dictionary<Coords, PowerGrid>();
 				grids = new List<PowerGrid>();
 				
-				Building.OnBuildingCreateEvent += BuildingCreatedEventHandler;
-				Building.OnBuildingDestroyEvent += BuildingDestroyedEventHandler;
+				Placeable.OnPlaceableCreateEvent += PlaceableCreatedEventHandler;
+				Placeable.OnPlaceableDestroyEvent += PlaceableDestroyedEventHandler;
 			}
 
 			public static PowerGridManager Instance{get{return instance;}}
@@ -46,7 +45,7 @@ namespace Untitled
 				
 				PowerGrid smaller;
 				PowerGrid larger;
-				if(g1.inputs.Count + g1.outputs.Count > g2.inputs.Count + g2.outputs.Count) {
+				if(g1.inputs.Count + g1.outputs.Count + g1.cables.Count > g2.inputs.Count + g2.outputs.Count + g2.cables.Count) {
 					smaller = g2;
 					larger = g1;
 				} else {
@@ -56,13 +55,15 @@ namespace Untitled
 				
 				foreach(Building building in smaller.inputs) {
 					larger.inputs.Add(building);
-					Vector3 gridCoords = building.gameObject.transform.position;
-					posToGridMap[gridCoords] = larger;
+					posToGridMap[building.coords] = larger;
 				}
 				foreach(Building building in smaller.outputs) {
 					larger.outputs.Add(building);
-					Vector3 gridCoords = building.gameObject.transform.position;
-					posToGridMap[gridCoords] = larger;
+					posToGridMap[building.coords] = larger;
+				}
+				foreach(Cable cable in smaller.cables) {
+					larger.cables.Add(cable);
+					posToGridMap[cable.coords] = larger;
 				}
 				
 				grids.Remove(smaller);
@@ -72,34 +73,39 @@ namespace Untitled
 			/***********************
 			***  Event Handlers  ***
 			************************/
-			private void BuildingCreatedEventHandler(Building building)
+			private void PlaceableCreatedEventHandler(Placeable placeable)
 			{
-				Vector3 gridCoords = building.gameObject.transform.position;
+				Coords coords = placeable.coords;
 				
 				PowerGrid grid = new PowerGrid();
-				grid.inputs.Add(building);
-				grids.Add(grid);
-				posToGridMap.Add(gridCoords, grid);
 				
-				if(posToGridMap.ContainsKey(gridCoords + dx + dy))
+				if(placeable.IsBuilding())
+					grid.inputs.Add(placeable.GetComponent<Building>());
+				else if(placeable.IsCable())
+					grid.cables.Add(placeable.GetComponent<Cable>());
+				
+				grids.Add(grid);
+				posToGridMap.Add(coords, grid);
+				
+				if(posToGridMap.ContainsKey(coords + Vector2Int.up))
 				{
-					grid = MergeGrids(grid, posToGridMap[gridCoords + dx + dy]);
+					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.up]);
 				}
-				if(posToGridMap.ContainsKey(gridCoords + dx - dy))
+				if(posToGridMap.ContainsKey(coords + Vector2Int.right))
 				{
-					grid = MergeGrids(grid, posToGridMap[gridCoords + dx - dy]);
+					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.right]);
 				}
-				if(posToGridMap.ContainsKey(gridCoords - dx + dy))
+				if(posToGridMap.ContainsKey(coords + Vector2Int.down))
 				{
-					grid = MergeGrids(grid, posToGridMap[gridCoords - dx + dy]);
+					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.down]);
 				}
-				if(posToGridMap.ContainsKey(gridCoords - dx - dy))
+				if(posToGridMap.ContainsKey(coords + Vector2Int.left))
 				{
-					grid = MergeGrids(grid, posToGridMap[gridCoords - dx - dy]);
+					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.left]);
 				}
 			}
 			
-			private void BuildingDestroyedEventHandler(Building building)
+			private void PlaceableDestroyedEventHandler(Placeable placeable)
 			{
 				
 			}
@@ -110,12 +116,14 @@ namespace Untitled
 		{
 			public List<Building> inputs;
 			public List<Building> outputs;
+			public List<Cable> cables;
 			
 			public PowerGrid()
 			{
 				Debug.Log("creating grid");
 				inputs = new List<Building>();
 				outputs = new List<Building>();
+				cables = new List<Cable>();
 			}
 			
 			~PowerGrid()

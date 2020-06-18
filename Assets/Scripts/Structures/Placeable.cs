@@ -10,7 +10,7 @@ public class Placeable : MonoBehaviour
 {
     public int cost;
 	public List<TileType> placeableTiles;
-	public Vector2 size;
+	public Vector2Int size;
 	public Coords coords;
 	
 	protected void Start()
@@ -22,6 +22,15 @@ public class Placeable : MonoBehaviour
 	protected void OnDestroy() 
 	{
 		OnPlaceableDestroyEvent?.Invoke(this);
+	}
+	
+	public bool IsBuilding()
+	{
+		return this.gameObject.GetComponent<Building>() != null;
+	}
+	public bool IsCable()
+	{
+		return this.gameObject.GetComponent<Cable>() != null;
 	}
 	
 	/***************

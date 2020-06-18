@@ -45,13 +45,13 @@ public class Cable : Placeable
 	{
 		int directions = 0;
 		
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(1, 0)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.right) != null)
 			directions |= RIGHT;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(0, 1)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.up) != null)
 			directions |= UP;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(-1, 0)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.left) != null)
 			directions |= LEFT;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(0, -1)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.down) != null)
 			directions |= DOWN;
 		
 		switch(directions) {
@@ -103,8 +103,6 @@ public class Cable : Placeable
 			default:
 				break;
 		};
-		
-		Debug.Log(directions);
 		
 	}
 	

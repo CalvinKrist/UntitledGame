@@ -17,7 +17,6 @@ public class Building : Placeable
 	[Header("General Settings")]
 	public string name;
     // Cost to place
-	[field: SerializeField]
 	public int cost {get; set;}
 	public float moneyGen = 20; // measured per minute with full pop
 	private float moneyGenerationRate; // generation per second
@@ -29,7 +28,6 @@ public class Building : Placeable
 	// What tiles the building can be placed on
 	[field: SerializeField]
 	public List<TileType> placeableTiles {get; set;}
-	[field: SerializeField]
 	public Vector2 size {get; set;}
 
     // Resource output variables
@@ -72,9 +70,6 @@ public class Building : Placeable
 	void Start()
 	{
 		base.Start();
-		
-		// Invoke building created event
-		OnBuildingCreateEvent?.Invoke(this);
 	}
 	
 	void OnDestroy() 
@@ -83,8 +78,6 @@ public class Building : Placeable
 		
 		while(storage.GetResourceCount(ResourceType.Population) > 0)
 			PopulationManager.UnassignWorker(this);
-		
-		OnBuildingDestroyEvent?.Invoke(this);
 	}
 
 	private float GetPopScalar()
@@ -124,11 +117,5 @@ public class Building : Placeable
 	{
 		return powerCost;
 	}
-	
-	/***************
-	***  Events  ***
-	****************/
-	public static event Action<Building> OnBuildingCreateEvent;
-	public static event Action<Building> OnBuildingDestroyEvent;
 	
 }

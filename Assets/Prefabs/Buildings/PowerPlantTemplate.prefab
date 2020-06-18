@@ -100,7 +100,7 @@ MonoBehaviour:
   placeableTiles: 00000000
   size: {x: 0, y: 0}
   name: Power Plant
-  <cost>k__BackingField: 0
+  <cost>k__BackingField: 50
   moneyGen: 60
   powerCost: 0
   maxPops: 15
