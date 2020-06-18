@@ -17,7 +17,7 @@ namespace Untitled
 			/***************
 			***  Events  ***
 			****************/
-			public event Action<AClickableSprite> OnSpriteClickEvent;
+			public event Action<ClickableSprite> OnSpriteClickEvent;
 			
 			#region SINGLETON PATTERN
 			public static UI_Manager _instance;
@@ -81,7 +81,7 @@ namespace Untitled
 				}
 			}
 			
-			public static void OnSpriteClick(AClickableSprite sprite)
+			public static void OnSpriteClick(ClickableSprite sprite)
 			{
 				if(Player.Instance.state == PlayerState.Selecting)
 					Instance.OnSpriteClickEvent?.Invoke(sprite);

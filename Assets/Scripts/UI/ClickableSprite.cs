@@ -9,32 +9,22 @@ namespace Untitled
 	namespace UI
 	{
 		
-		public enum SpriteType
-		{
-			Building,
-			None
-		}
-		
 		[RequireComponent(typeof(PolygonCollider2D))]
 		[RequireComponent(typeof(SpriteRenderer))]
-		public class AClickableSprite : Placeable
+		public class ClickableSprite : MonoBehaviour
 		{
 
 			[Header("Shader Settings")]
-			public bool outlineOnHover;
+			public bool enableDialogue;
 			[Range(0.0f, 2.0f)]
 			public float outlineWidth;
 			public Shader shader;
 			
 			private Material mat;
-			
-			protected SpriteType spriteType = SpriteType.None;
 
 			protected void Start()
 			{
-				base.Start();
-				
-				if(outlineOnHover) 
+				if(enableDialogue) 
 				{
 					mat = GetComponent<Renderer>().material;
 					mat.shader = shader;
@@ -44,14 +34,9 @@ namespace Untitled
 				}				
 			}
 			
-			public SpriteType GetType()
-			{
-				return this.spriteType;
-			}
-			
 			void OnMouseEnter()
 			{
-				if(outlineOnHover) 
+				if(enableDialogue) 
 				{
 					mat.SetFloat("_XWidth", outlineWidth);
 					mat.SetFloat("_YWidth", outlineWidth);
@@ -60,7 +45,7 @@ namespace Untitled
 
 			void OnMouseExit()
 			{
-				if(outlineOnHover) 
+				if(enableDialogue) 
 				{
 					mat.SetFloat("_XWidth", 0f);
 					mat.SetFloat("_YWidth", 0f);
