@@ -55,11 +55,15 @@ namespace Untitled
 				
 				foreach(Building building in smaller.inputs) {
 					larger.inputs.Add(building);
-					posToGridMap[building.coords] = larger;
+					
+					foreach(Coords coords in building.GetBounds())
+						posToGridMap[coords] = larger;
 				}
 				foreach(Building building in smaller.outputs) {
 					larger.outputs.Add(building);
-					posToGridMap[building.coords] = larger;
+					
+					foreach(Coords coords in building.GetBounds())
+						posToGridMap[coords] = larger;
 				}
 				foreach(Cable cable in smaller.cables) {
 					larger.cables.Add(cable);
@@ -75,8 +79,8 @@ namespace Untitled
 			************************/
 			private void PlaceableCreatedEventHandler(Placeable placeable)
 			{
-				Coords coords = placeable.coords;
-				
+
+				// Create a PowerGrid of just this placeable
 				PowerGrid grid = new PowerGrid();
 				
 				if(placeable.IsBuilding())
@@ -85,23 +89,29 @@ namespace Untitled
 					grid.cables.Add(placeable.GetComponent<Cable>());
 				
 				grids.Add(grid);
-				posToGridMap.Add(coords, grid);
+				foreach(Coords coords in placeable.GetBounds())
+					posToGridMap.Add(coords, grid);
 				
-				if(posToGridMap.ContainsKey(coords + Vector2Int.up))
+				// Create a list of surrounding coords to check
+				// if there are other PowerGrids
+				List<Coords> placeableTiles = placeable.GetBounds();
+				List<Coords> surroundingTiles = new List<Coords>();
+				foreach(Coords coords in placeableTiles)
 				{
-					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.up]);
+					if(!placeableTiles.Contains(coords + Vector2Int.up))
+						surroundingTiles.Add(coords + Vector2Int.up);
+					if(!placeableTiles.Contains(coords + Vector2Int.right))
+						surroundingTiles.Add(coords + Vector2Int.right);
+					if(!placeableTiles.Contains(coords + Vector2Int.down))
+						surroundingTiles.Add(coords + Vector2Int.down);
+					if(!placeableTiles.Contains(coords + Vector2Int.left))
+						surroundingTiles.Add(coords + Vector2Int.left);
 				}
-				if(posToGridMap.ContainsKey(coords + Vector2Int.right))
+				
+				foreach(Coords coords in surroundingTiles)
 				{
-					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.right]);
-				}
-				if(posToGridMap.ContainsKey(coords + Vector2Int.down))
-				{
-					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.down]);
-				}
-				if(posToGridMap.ContainsKey(coords + Vector2Int.left))
-				{
-					grid = MergeGrids(grid, posToGridMap[coords + Vector2Int.left]);
+					if(posToGridMap.ContainsKey(coords))
+						grid = MergeGrids(grid, posToGridMap[coords]);
 				}
 			}
 			
