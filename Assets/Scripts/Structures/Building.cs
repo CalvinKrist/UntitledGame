@@ -12,7 +12,7 @@ using Untitled.Utils;
 
 [RequireComponent(typeof(ResourceStorage))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Building : AClickableSprite
+public class Building : Placeable
 {
 	[Header("General Settings")]
 	public string name;
@@ -55,8 +55,6 @@ public class Building : AClickableSprite
             generationPerSec = resourceGenerationRate / 60f;
         if (resourceInputType != ResourceType.None)
             depletionPerSec = resourceDepletionRate / 60f;
-		
-		this.spriteType = SpriteType.Building;
 		
 		// Add resource storage to parent if it doesn't exist
 		if(GetComponent<ResourceStorage>() == null)
