@@ -50,10 +50,8 @@ namespace Untitled
 				placeableMap = new Dictionary<Coords, Placeable>();
 				
 				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
-					Debug.Log("Adding Object");
 					foreach(Coords coords in placeable.GetBounds()) {
 						placeableMap[coords] = placeable;
-						Debug.Log(coords.AsGrid());
 					}
 				};
 				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {

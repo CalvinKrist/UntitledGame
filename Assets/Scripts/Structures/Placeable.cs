@@ -28,6 +28,9 @@ public class Placeable : MonoBehaviour
 
 		for(int xOff = xStart; xOff <= xEnd; xOff++)
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
+				// -y offset cuz that worked for power plant
+				// x might need to be negative as well
+				// or it might be quadrant dependent
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
 			
 		
@@ -46,6 +49,31 @@ public class Placeable : MonoBehaviour
 	public bool IsCable()
 	{
 		return this.gameObject.GetComponent<Cable>() != null;
+	}
+	public bool IsNextTo(Placeable other)
+	{
+		// Create a list of surrounding coords 
+		List<Coords> placeableTiles = this.GetBounds();
+		List<Coords> surroundingTiles = new List<Coords>();
+		foreach(Coords coords in placeableTiles)
+		{
+			if(!placeableTiles.Contains(coords + Vector2Int.up))
+				surroundingTiles.Add(coords + Vector2Int.up);
+			if(!placeableTiles.Contains(coords + Vector2Int.right))
+				surroundingTiles.Add(coords + Vector2Int.right);
+			if(!placeableTiles.Contains(coords + Vector2Int.down))
+				surroundingTiles.Add(coords + Vector2Int.down);
+			if(!placeableTiles.Contains(coords + Vector2Int.left))
+				surroundingTiles.Add(coords + Vector2Int.left);
+		}
+		
+		foreach(Coords coord in surroundingTiles)
+		{
+			if(GridUtils.GetPlaceableAt(coord) == other)
+				return true;
+		}
+		
+		return false;
 	}
 	
 	// Returns a list of Coord objects for all

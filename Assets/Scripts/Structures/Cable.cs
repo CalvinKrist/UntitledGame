@@ -42,7 +42,7 @@ public class Cable : Placeable
 	// Called when the sprite needs updating,
 	// normally when an adjacent cable was placed
 	private void UpdateSprite()
-	{
+	{		
 		int directions = 0;
 		
 		if(GridUtils.GetPlaceableAt(coords + Vector2Int.right) != null)
@@ -108,11 +108,7 @@ public class Cable : Placeable
 	
 	private void OnPlaceablePlaced(Placeable other)
 	{
-		// If the placeable is adjacent to our own,
-		// update our sprite
-		var g1 = this.coords.AsGrid();
-		var g2 = other.coords.AsGrid();
-		if(Math.Abs(g1.x - g2.x) + Math.Abs(g1.y - g2.y) == 1)
+		if(this.IsNextTo(other))
 			UpdateSprite();
 	}
 }
