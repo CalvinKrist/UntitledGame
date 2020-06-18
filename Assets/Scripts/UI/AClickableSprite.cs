@@ -32,6 +32,8 @@ namespace Untitled
 
 			protected void Start()
 			{
+				base.Start();
+				
 				if(outlineOnHover) 
 				{
 					mat = GetComponent<Renderer>().material;

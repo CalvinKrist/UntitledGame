@@ -63,6 +63,8 @@ namespace Untitled
 			
 			// Access the PowerGrid manager to instantiate it
 			var gridManager = PowerGridManager.Instance;
+			// Access the GridUtils manager to instantiate it
+			var gridUtils = GridUtils.Instance;
 		}
 			
 		void Update()

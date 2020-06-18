@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 using Untitled.Resource;
 using Untitled.Configs;
 using System.Linq;
-
+using Untitled.Utils;
 
 namespace Untitled
 {
@@ -43,22 +43,16 @@ namespace Untitled
                     }
                 }
             }
-
-            private Tile GetTileAt(Vector3 pos)
-            {
-                pos = Camera.main.ScreenToWorldPoint(pos);
-                pos.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                return tilemap.GetTile<Tile>(gridCoords);
-            }
-
-            /*** CheckType ***/
 			
-            public TileType CheckType(Vector3 pos)
+			/*** CheckType ***/
+			
+			public TileType CheckType(Coords coords)
             {
-                return CheckType(GetTileAt(pos));
+                return CheckType(tilemap.GetTile<Tile>(
+					tilemap.WorldToCell(coords.AsTile())
+				));
             }
-
+			
             public TileType CheckType(Tile tile)
             {
                 if (tile != null)
@@ -73,6 +67,18 @@ namespace Untitled
                 return TileType.None;
             }
             /*** End CheckType ***/
+			
+			public ResourceTile GetResourceTile(Coords coords)
+            {
+				Vector3Int pos = tilemap.WorldToCell(coords.AsTile());
+                int index = FlatIndex(pos);
+				
+                ResourceTile tile;
+                if (storageMap.TryGetValue(index, out tile)) 
+                    return tile;
+                
+                return null;
+            }
 
             /*** FlatIndex ***/
 
@@ -93,20 +99,18 @@ namespace Untitled
             /*** End FlatIndex ***/
 
             /*** GetValueAt ***/
-            public float GetValueAt(Vector3 pos)
+            public float GetValueAt(Coords coords)
             {
-                pos = Camera.main.ScreenToWorldPoint(pos);
-                pos.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                return GetValueAt(gridCoords);
+                Vector3Int pos = tilemap.WorldToCell(coords.AsTile());
+                return GetValueAt(pos);
             }
 
-            public float GetValueAt(Vector3Int pos)
+            private float GetValueAt(Vector3Int pos)
             {
                 return GetValueAt(FlatIndex(pos));
             }
 
-            public float GetValueAt(int pos)
+            private float GetValueAt(int pos)
             {
                 ResourceTile tile;
                 if (storageMap.TryGetValue(pos, out tile))
@@ -118,33 +122,7 @@ namespace Untitled
                     return 0;
                 }
             }
-			
-			public ResourceTile GetResourceTileAtWorldCoords(Vector3 worldCoords)
-            {
-				worldCoords = Camera.main.ScreenToWorldPoint(worldCoords);
-                worldCoords.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(worldCoords);
-				int index = FlatIndex(gridCoords);
-				
-                ResourceTile tile;
-                if (storageMap.TryGetValue(index, out tile)) 
-                    return tile;
-                
-                return null;
-            }
-
-            public bool ModifyTileStorage(Vector3 pos, int delta)
-            {
-                return false;
-            }
-
-            public Vector3 CastWorldCoordsToTile(Vector3 pos)
-            {
-                pos = Camera.main.ScreenToWorldPoint(pos);
-                pos.z = 0;
-                Vector3Int gridCoords = tilemap.WorldToCell(pos);
-                return tilemap.CellToWorld(gridCoords);
-            }
+			/*** End GetValueAt ***/
 
         }
     }

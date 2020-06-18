@@ -7,6 +7,14 @@ namespace Untitled
 {
 	namespace Utils
 	{
+		/*
+		* Provides ways to convert "tile coordinates" to
+		* cartesian grid coordinates, and then query world
+		* information based on those grid coordinates.
+		*
+		* This is useful to, for example, figure out what's
+		* surrounding a tile.
+		*/
 		public class GridUtils : MonoBehaviour
 		{
 			public TileManager tileManager;
@@ -16,7 +24,7 @@ namespace Untitled
 			
 			#region SINGLETON PATTERN
 			private static GridUtils _instance;
-			private static GridUtils Instance
+			public static GridUtils Instance
 			{
 			 get {
 				 if (_instance == null)
@@ -35,62 +43,54 @@ namespace Untitled
 			}
 			#endregion
 			
-			/*
-			* Given world coordinates -- the actual coordinates of an 
-			* object, often found by gamneObject.transform.position --
-			* return the "grid coords".
-			*
-			* Grid coords could be viewed as the cartesian plane coordinates
-			* if the isometric grid was mapped to a normal square grid and 
-			* viewed from above.
-			*/
-			public static Vector2Int GetGridCoords(Vector3 worldCoords)
+			private Dictionary<Coords, Placeable> placeableMap;
+			
+			void Start()
 			{
-				var dx = Instance.dx;
-				var dy = Instance.dy;
+				placeableMap = new Dictionary<Coords, Placeable>();
 				
-				float xCount = worldCoords.x / dx.x;
-				float yCount = worldCoords.y / dy.y;
-								
-				bool roundedX = false;
-				if(xCount % 2 != 0) {
-					roundedX = true;
-					xCount = xCount > 0 ? xCount + 1 : xCount - 1;
-				}
-				bool roundedY = false;
-				if(yCount % 2 != 0) {
-					roundedY = true;
-					yCount = yCount > 0 ? yCount + 1 : yCount - 1;
-				}
+				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
+					Coords coords = new Coords(placeable.gameObject.transform.position);
+					placeableMap[coords] = placeable;
+				};
+				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
+					Coords coords = new Coords(placeable.gameObject.transform.position);
+					placeableMap.Remove(coords);
+				};
+			}
+			
+			public static Placeable GetPlaceableAt(Coords coords)
+			{
+				if(Instance.placeableMap.ContainsKey(coords))
+					return Instance.placeableMap[coords];
+				return null;
+			}
+			
+			public static TileType GetTileTypeAt(Coords coords)
+			{
+				return Instance.tileManager.CheckType(coords);
+			}
+			
+			public static ResourceTile GetResourceTileAt(Coords coords)
+			{
+				return Instance.tileManager.GetResourceTile(coords);
+			}
+			
+			// Casts world coordinates to a 'Coords' object.
+			// World coords are things like raw mouse position.
+			public static Coords WorldToCoords(Vector3 worldCoords)
+			{
+				// Convert world coords to tile coords through
+				// camera transformations.
+				Vector3 pos = Camera.main.ScreenToWorldPoint(worldCoords);
+                pos.z = 0;
 				
-				// Create initial x and y based on rounding
-				// by tracing across the major diagonal
-				int x = (int)(xCount / 2);
-				int y = x;
-				if(y <= x)
-					y *=  -1;
-								
-				// Correct by tracing back across the minor 
-				// diagonal
-				int correction = (int)(yCount / 2);
-				x += correction;
-				y += correction;
-								
-				// Account for rounding
-				if(correction > 0 && roundedX) {
-					if(xCount > 0)
-						x -= 1;
-					else
-						y -= 1;
-				}
-				else if(correction < 0 && roundedY) {
-					if(xCount > 0)
-						y += 1;
-					else
-						x += 1;
-				}
-								
-				return new Vector2Int(x, y);
+				// Round tile coords to center of the nearest 
+				// tile by converting back and forth
+                Vector3Int gridCoords = Instance.tileManager.tilemap.WorldToCell(pos);
+                Vector3 coords = Instance.tileManager.tilemap.CellToWorld(gridCoords);
+				
+				return new Coords(coords);
 			}
 			
 			public static void TestGetGridCoords()
@@ -128,23 +128,24 @@ namespace Untitled
 				int incorrectCount = 0;
 				foreach(KeyValuePair<Vector2Int, Vector2Int> entry in testCases)
 				{
-					Vector3 coords = new Vector3(entry.Key.x * dx, entry.Key.y * dy, 0);
+					Vector3 tileCoords = new Vector3(entry.Key.x * dx, entry.Key.y * dy, 0);
 					
-					Vector2Int result = GetGridCoords(coords);
+					Coords coords = new Coords(tileCoords);
 					
-					if(result == entry.Value)
+					if(coords.AsGrid() == entry.Value)
 						Debug.Log("PASSED " + entry.Value);
 					else {
 						Debug.Log("FAILED:");
 						Debug.Log("\ttest: " + entry.Key);
 						Debug.Log("\texpected: " + entry.Value);
-						Debug.Log("\tactual: " + result);
+						Debug.Log("\tactual: " + coords.AsGrid());
 						incorrectCount++;
 					}
 				}
 				
 				Debug.Log("Test Cases Incorrect: " + incorrectCount);
 			}
+			
 		}
 	}
 }

@@ -73,14 +73,15 @@ public class Building : AClickableSprite
 	void Start()
 	{
 		base.Start();
+		
 		// Invoke building created event
 		OnBuildingCreateEvent?.Invoke(this);
-		
-		Debug.Log(GridUtils.GetGridCoords(this.gameObject.transform.position));
 	}
 	
 	void OnDestroy() 
 	{
+		base.OnDestroy();
+		
 		while(storage.GetResourceCount(ResourceType.Population) > 0)
 			PopulationManager.UnassignWorker(this);
 		
