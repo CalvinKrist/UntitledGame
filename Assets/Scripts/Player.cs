@@ -54,11 +54,13 @@ namespace Untitled
 			storage = GetComponent<ResourceStorage>();
 			buildings = new List<Building>();
 			
-			Building.OnBuildingCreateEvent += (Building building) => {
-				buildings.Add(building);
+			Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
+				if(placeable.IsBuilding())
+					buildings.Add(placeable.gameObject.GetComponent<Building>() );
 			};
-			Building.OnBuildingDestroyEvent += (Building building) => {
-				buildings.Remove(building);
+			Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
+				if(placeable.IsBuilding())
+					buildings.Remove(placeable.gameObject.GetComponent<Building>());
 			};
 			
 			// Access the PowerGrid manager to instantiate it

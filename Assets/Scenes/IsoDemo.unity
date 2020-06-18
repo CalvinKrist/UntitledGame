@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 322195045}
   - component: {fileID: 322195046}
   - component: {fileID: 322195047}
+  - component: {fileID: 322195048}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -240,6 +241,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
+--- !u!114 &322195048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322195040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdd53d7d286fc5439b3f7e9549c55ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileManager: {fileID: 715819538}
 --- !u!1 &576359048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,8 +4314,8 @@ Tilemap:
   - first: {x: -18, y: -16, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6498,9 +6512,9 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 14042cb859cde15418f3e7a3483cc733, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: a6a0845e9e26cca42955d233ad6cd534, type: 2}
-  - m_RefCount: 129
+  - m_RefCount: 130
     m_Data: {fileID: 11400000, guid: be2b1f214672b05468e9fc10964b2bcc, type: 2}
-  - m_RefCount: 507
+  - m_RefCount: 506
     m_Data: {fileID: 11400000, guid: c77a039d081cb634ca2118e1146585df, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7c3ba0fc40eb8264d9eaf6fec1ab9d70, type: 2}
@@ -6524,10 +6538,10 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: -5222639678810988778, guid: d14bae761778ecd43a7827a69c792a0b,
       type: 3}
-  - m_RefCount: 129
+  - m_RefCount: 130
     m_Data: {fileID: 5804881239983208460, guid: dec9ab5b83df85c4197c397ac2d33460,
       type: 3}
-  - m_RefCount: 507
+  - m_RefCount: 506
     m_Data: {fileID: -5283086503343340105, guid: d14bae761778ecd43a7827a69c792a0b,
       type: 3}
   - m_RefCount: 1

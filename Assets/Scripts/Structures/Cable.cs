@@ -42,16 +42,16 @@ public class Cable : Placeable
 	// Called when the sprite needs updating,
 	// normally when an adjacent cable was placed
 	private void UpdateSprite()
-	{
+	{		
 		int directions = 0;
 		
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(1, 0)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.right) != null)
 			directions |= RIGHT;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(0, 1)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.up) != null)
 			directions |= UP;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(-1, 0)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.left) != null)
 			directions |= LEFT;
-		if(GridUtils.GetPlaceableAt(coords + new Vector2Int(0, -1)) != null)
+		if(GridUtils.GetPlaceableAt(coords + Vector2Int.down) != null)
 			directions |= DOWN;
 		
 		switch(directions) {
@@ -104,17 +104,11 @@ public class Cable : Placeable
 				break;
 		};
 		
-		Debug.Log(directions);
-		
 	}
 	
 	private void OnPlaceablePlaced(Placeable other)
 	{
-		// If the placeable is adjacent to our own,
-		// update our sprite
-		var g1 = this.coords.AsGrid();
-		var g2 = other.coords.AsGrid();
-		if(Math.Abs(g1.x - g2.x) + Math.Abs(g1.y - g2.y) == 1)
+		if(this.IsNextTo(other))
 			UpdateSprite();
 	}
 }
