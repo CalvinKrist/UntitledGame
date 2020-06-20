@@ -20,6 +20,15 @@ public class Placeable : MonoBehaviour
 		
 		boundsList = new List<Coords>();
 		
+		UpdateBounds();
+		
+		OnPlaceableCreateEvent?.Invoke(this);
+	}
+	
+	private void UpdateBounds()
+	{
+		boundsList = new List<Coords>();
+		
 		// Calculate offset bounds rounding down 
 		int xStart = -(int)((size.x - 1) / 2);
 		int xEnd = (int)(size.x / 2);
@@ -29,8 +38,13 @@ public class Placeable : MonoBehaviour
 		for(int xOff = xStart; xOff <= xEnd; xOff++)
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
-		
-		OnPlaceableCreateEvent?.Invoke(this);
+	}
+	
+	public void Move(Coords newLocation)
+	{
+		coords = newLocation;
+		this.gameObject.transform.position = coords.AsTile();
+		UpdateBounds();
 	}
 	
 	protected void OnDestroy() 
@@ -71,7 +85,7 @@ public class Placeable : MonoBehaviour
 		
 		return false;
 	}
-	
+
 	// Returns a list of Coord objects for all
 	// tiles the placeable is on
 	public List<Coords> GetBounds()

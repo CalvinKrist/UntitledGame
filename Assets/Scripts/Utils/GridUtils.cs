@@ -49,7 +49,7 @@ namespace Untitled
 			{
 				placeableMap = new Dictionary<Coords, Placeable>();
 				
-				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
+				ObjectPlacer.OnPlaceablePlacedEvent += (Placeable placeable) => {
 					foreach(Coords coords in placeable.GetBounds()) {
 						placeableMap[coords] = placeable;
 					}

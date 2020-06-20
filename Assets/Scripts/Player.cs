@@ -94,8 +94,16 @@ namespace Untitled
 		**************************/
 		public void OnStateChange(PlayerState newState) 
 		{
+			
 			if(this.state == PlayerState.Placing && newState == PlayerState.Selecting)
+			{
+				var placer = GetComponent<ObjectPlacer>();
+				if (!placer.placed){
+					Destroy(placer.nextSpawn);
+				}
+				placer.placed=false;
 				GameObject.Find("BuildingBuyerSelection").BroadcastMessage("Deselect");
+			}
 			this.state = newState;
 		}
 

@@ -31,7 +31,7 @@ namespace Untitled
 				posToGridMap = new Dictionary<Coords, PowerGrid>();
 				grids = new List<PowerGrid>();
 				
-				Placeable.OnPlaceableCreateEvent += PlaceableCreatedEventHandler;
+				ObjectPlacer.OnPlaceablePlacedEvent += PlaceablePlacedEventHandler;
 				Placeable.OnPlaceableDestroyEvent += PlaceableDestroyedEventHandler;
 			}
 
@@ -77,9 +77,8 @@ namespace Untitled
 			/***********************
 			***  Event Handlers  ***
 			************************/
-			private void PlaceableCreatedEventHandler(Placeable placeable)
+			private void PlaceablePlacedEventHandler(Placeable placeable)
 			{
-
 				// Create a PowerGrid of just this placeable
 				PowerGrid grid = new PowerGrid();
 				

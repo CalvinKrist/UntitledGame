@@ -10,12 +10,17 @@ using Untitled.Utils;
 
 public class ObjectPlacer : MonoBehaviour
 {
+	// Prefab -- template of what we're making
     private Placeable toSpawn;
+	// Actual object being placed
+	public GameObject nextSpawn;
 	[SerializeField] private ResourceStorage wallet;
 
 	public string TileMapName = "Tilemap";
 
 	private TileManager tileManager;
+	
+	public bool placed;
 
 	public void Start()
 	{
@@ -27,16 +32,15 @@ public class ObjectPlacer : MonoBehaviour
 		float balance = wallet.GetResourceCount(ResourceType.Money);
 		if(balance >= toSpawn.cost)
 		{
+			nextSpawn.GetComponent<Placeable>().Move(coords);
+			placed=true;
+			OnPlaceablePlacedEvent?.Invoke(nextSpawn.GetComponent<Placeable>());
+			
 			// Player pays the cost
 			wallet.AddResources(ResourceType.Money, -toSpawn.cost);
 			
-			// Create the placeable at the specified position
-			// so that it's position is already set when PlaceableCreated
-			// events are generated
-			var created = Instantiate(toSpawn.gameObject, coords.AsTile(), Quaternion.Euler(0,0,0));
-			
 			// Configure building if it exists
-			Building building = created.GetComponent<Building>();
+			Building building = nextSpawn.GetComponent<Building>();
 			if(building != null)
 			{
 				building.destinationStorage = wallet;
@@ -47,21 +51,35 @@ public class ObjectPlacer : MonoBehaviour
 
 	public void Update()
 	{
-		if(Player.Instance.state == PlayerState.Placing && Input.GetMouseButtonDown(0))
+		if(Player.Instance.state == PlayerState.Placing)
 		{
 			Coords coords =  GridUtils.WorldToCoords(Input.mousePosition);
+			nextSpawn.transform.position = coords.AsTile();
+			
+			if (Input.GetMouseButtonDown(0))
+			{
+				//generate list of coords from desired placing
 
-			var tileType = GridUtils.GetTileTypeAt(coords);
-			if (tileManager && toSpawn.placeableTiles.Contains(tileType)) {
-				Spawn(coords);
-				Player.Instance.OnStateChange(PlayerState.Selecting);
+				var tileType = GridUtils.GetTileTypeAt(coords);
+				if (tileManager && toSpawn.placeableTiles.Contains(tileType)) 
+				{
+					Spawn(coords);
+					
+					Player.Instance.OnStateChange(PlayerState.Selecting);
+				}
+			
 			}
-		
 		}
 	}
 	
 	public void SetObject(Placeable newObject) 
 	{
 		toSpawn = newObject;
+		nextSpawn = Instantiate(toSpawn.gameObject);
 	}
+	
+	/***************
+	***  Events  ***
+	****************/
+	public static event Action<Placeable> OnPlaceablePlacedEvent;
 }
