@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Untitled.Resource;
 using Untitled;
 using System;
+using UnityEngine.EventSystems;
 
 namespace Untitled
 {
@@ -85,6 +86,15 @@ namespace Untitled
 			{
 				if(Player.Instance.state == PlayerState.Selecting)
 					Instance.OnSpriteClickEvent?.Invoke(sprite);
+			}
+			
+			public void DeleteButtonToggleOn(BaseEventData eventData)
+			{
+				Debug.Log("Toggled on");
+			}
+			public void DeleteButtonToggleOff(BaseEventData eventData)
+			{
+				Debug.Log("Toggled off");
 			}
 		}
 	}
