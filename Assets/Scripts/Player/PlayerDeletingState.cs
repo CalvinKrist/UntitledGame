@@ -1,26 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Untitled.UI;
 
 namespace Untitled
 {
 	namespace Controller
 	{
-		public class PlayerSelectingState : PlayerState
+		public class PlayerDeletingState : PlayerState
 		{
-			
 			private bool active = false;
 			
 			public override void OnStateInitialize (Player player) 
 			{
 				base.OnStateInitialize(player);
 				
-				// Exit state if a placeable object button is selected
-				ObjectSelector.OnPlaceableButtonSelectedEvent += (Placeable obj) => {
+				ClickableSprite.OnSpriteClickEvent += (ClickableSprite sprite) => {
 					if(active)
 					{
-						player.SwitchState<PlayerPlacingState>();
-						player.GetState<PlayerPlacingState>().SetPlaceable(obj);
+						GameObject.Destroy(sprite.gameObject);
 					}
 				};
 			}
@@ -31,7 +29,6 @@ namespace Untitled
 			}
 			public override void OnStateExit()
 			{
-				GameObject.Find("BuildingBuyerSelection").BroadcastMessage("Deselect");
 				active = false;
 			}
 			public override void Update()

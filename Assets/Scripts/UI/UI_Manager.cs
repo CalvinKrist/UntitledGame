@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Untitled.Resource;
 using Untitled.Controller;
-using System;
 using UnityEngine.EventSystems;
 
 namespace Untitled
@@ -13,13 +12,7 @@ namespace Untitled
 	{
 		
 		public class UI_Manager : MonoBehaviour
-		{
-			
-			/***************
-			***  Events  ***
-			****************/
-			public event Action<ClickableSprite> OnSpriteClickEvent;
-			
+		{	
 			#region SINGLETON PATTERN
 			public static UI_Manager _instance;
 			public static UI_Manager Instance
@@ -82,19 +75,14 @@ namespace Untitled
 				}
 			}
 			
-			public static void OnSpriteClick(ClickableSprite sprite)
-			{
-				if(Player.Instance.GetCurrentState() is PlayerSelectingState)
-					Instance.OnSpriteClickEvent?.Invoke(sprite);
-			}
-			
 			public void DeleteButtonToggleOn(BaseEventData eventData)
 			{
-				Debug.Log("Toggled on");
+				Player.Instance.SwitchState<PlayerDeletingState>();
 			}
 			public void DeleteButtonToggleOff(BaseEventData eventData)
 			{
-				Debug.Log("Toggled off");
+				if(Player.Instance.GetCurrentState() is PlayerDeletingState)
+					Player.Instance.SwitchState<PlayerSelectingState>();
 			}
 		}
 	}

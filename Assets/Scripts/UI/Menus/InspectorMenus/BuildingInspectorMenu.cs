@@ -43,7 +43,7 @@ namespace Untitled
 				buildingInfoPanel = GameObject.Find("BuildingInfoPanel");
 				
 				// Subscribe to events
-				UI_Manager.Instance.OnSpriteClickEvent += OnSpriteClick;
+				ClickableSprite.OnSpriteClickEvent += OnSpriteClick;
 			}
 			
 			/*

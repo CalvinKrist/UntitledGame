@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Untitled.UI;
 using Untitled.Configs;
@@ -65,8 +66,14 @@ namespace Untitled
 			
 			void OnMouseClick()
 			{
-				UI_Manager.OnSpriteClick(this);
+				OnSpriteClickEvent?.Invoke(this);
 			}
+			
+						
+			/***************
+			***  Events  ***
+			****************/
+			public static event Action<ClickableSprite> OnSpriteClickEvent;
 		}
 		
 	}
