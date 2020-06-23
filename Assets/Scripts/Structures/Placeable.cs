@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unity.Entities;
 using Untitled.Tiles;
-using System;
 using Untitled.Utils;
 
 public class Placeable : MonoBehaviour

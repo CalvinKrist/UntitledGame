@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Untitled.Resource;
-using Untitled;
+using Untitled.Controller;
 using System;
 using UnityEngine.EventSystems;
 
@@ -84,7 +84,7 @@ namespace Untitled
 			
 			public static void OnSpriteClick(ClickableSprite sprite)
 			{
-				if(Player.Instance.state == PlayerState.Selecting)
+				if(Player.Instance.GetCurrentState() is PlayerSelectingState)
 					Instance.OnSpriteClickEvent?.Invoke(sprite);
 			}
 			
