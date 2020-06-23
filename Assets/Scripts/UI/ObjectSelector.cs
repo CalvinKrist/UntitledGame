@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Untitled;
+using Untitled.Controller;
 
 /*
 * A class attached to a button. When the button is clicked,
@@ -16,7 +17,6 @@ public class ObjectSelector : MonoBehaviour
 	public Placeable placeableObject;
 	
 	private Player player;
-	private ObjectPlacer placer;
 	
 	private Button button;
 	private Outline outline;
@@ -26,9 +26,6 @@ public class ObjectSelector : MonoBehaviour
 		button = this.gameObject.GetComponent<Button>();
 		button.onClick.AddListener(OnClick);
 		
-		player = Player.Instance;
-		placer = player.GetComponent<ObjectPlacer>();
-		
 		if(this.gameObject.GetComponent<Outline>() == null)
 		{
 			outline = this.gameObject.AddComponent<Outline>();
@@ -36,12 +33,15 @@ public class ObjectSelector : MonoBehaviour
 		outline.effectDistance = new Vector2(2, 2);
 		outline.effectColor  = new Color(0, 0, 0);
 		outline.enabled = false;
+		
+		OnPlaceableButtonSelectedEvent += (Placeable obj) => {
+			if(obj != placeableObject)
+				Deselect();
+		};
 	}
 	
     public void OnClick()
 	{
-		player.OnStateChange(PlayerState.Placing);
-		placer.SetObject(placeableObject);
 		Select();
 	}
 	
@@ -50,6 +50,8 @@ public class ObjectSelector : MonoBehaviour
 	**************************/
 	public void Select()
 	{
+		OnPlaceableButtonSelectedEvent?.Invoke(placeableObject);
+		
 		if(!outline.enabled)
 			outline.enabled = true;
 	}
@@ -58,4 +60,9 @@ public class ObjectSelector : MonoBehaviour
 		if(outline.enabled)
 			outline.enabled = false;
 	}
+	
+	/***************
+	***  Events  ***
+	****************/
+	public static event Action<Placeable> OnPlaceableButtonSelectedEvent;
 }
