@@ -117,11 +117,11 @@ namespace Untitled
 			{							
 				storage = GetComponent<ResourceStorage>();
 				buildings = new List<Building>();
-				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
+				Placeable.OnPlaceableCreateEventP2 += (Placeable placeable) => {
 					if(placeable.IsBuilding())
 						buildings.Add(placeable.gameObject.GetComponent<Building>() );
 				};
-				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
+				Placeable.OnPlaceableDestroyEventP2 += (Placeable placeable) => {
 					if(placeable.IsBuilding())
 						buildings.Remove(placeable.gameObject.GetComponent<Building>());
 				};

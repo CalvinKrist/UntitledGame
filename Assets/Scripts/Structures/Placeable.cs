@@ -30,12 +30,14 @@ public class Placeable : MonoBehaviour
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
 		
-		OnPlaceableCreateEvent?.Invoke(this);
+		OnPlaceableCreateEventP1?.Invoke(this);
+		OnPlaceableCreateEventP2?.Invoke(this);
 	}
 	
 	protected void OnDestroy() 
 	{
-		OnPlaceableDestroyEvent?.Invoke(this);
+		OnPlaceableDestroyEventP1?.Invoke(this);
+		OnPlaceableDestroyEventP2?.Invoke(this);
 	}
 	
 	public bool IsBuilding()
@@ -63,11 +65,14 @@ public class Placeable : MonoBehaviour
 				surroundingTiles.Add(coords + Vector2Int.left);
 		}
 		
-		foreach(Coords coord in surroundingTiles)
-		{
-			if(GridUtils.GetPlaceableAt(coord) == other)
-				return true;
-		}
+		// Don't check GridUtils in O(n) time because
+		// it isn't guarunteed to work in PlaceableCreated
+		// or PlaceableDestroyed event handlers. Instead 
+		// use O(n^2) and check both lists
+		foreach(Coords c1 in surroundingTiles)
+			foreach(Coords c2 in other.GetBounds()) 
+				if(c1 == c2)
+					return true;
 		
 		return false;
 	}
@@ -82,6 +87,17 @@ public class Placeable : MonoBehaviour
 	/***************
 	***  Events  ***
 	****************/
-	public static event Action<Placeable> OnPlaceableCreateEvent;
-	public static event Action<Placeable> OnPlaceableDestroyEvent;
+	/* 
+	* Split creation and deletion into 2 phases so 
+	* GridUtils and PowerGridManager can process creations 
+	* and deletions before anyone else
+	*
+	* For guaranteed behavior, any class that needs to 
+	* use GridUtils or PowerGridManager in their handlers
+	* should use CreateEventP2 and DestroyEventP2
+	*/
+	public static event Action<Placeable> OnPlaceableCreateEventP1;
+	public static event Action<Placeable> OnPlaceableDestroyEventP1;
+	public static event Action<Placeable> OnPlaceableCreateEventP2;
+	public static event Action<Placeable> OnPlaceableDestroyEventP2;
 }

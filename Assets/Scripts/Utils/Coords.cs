@@ -155,6 +155,14 @@ namespace Untitled
 				return this.gridCoords.GetHashCode();
 			}
 			
+			public static bool operator ==(Coords c1, Coords c2)
+			{
+				return c1.Equals(c2);
+			}
+			public static bool operator !=(Coords c1, Coords c2)
+			{
+				return !c1.Equals(c2);
+			}
 			public override bool Equals(object obj)
 			{
 				return Equals(obj as Coords);

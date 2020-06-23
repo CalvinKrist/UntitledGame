@@ -36,7 +36,7 @@ namespace Untitled
 			
 			public float UIRefreshRate = 0.05f;
 			
-			[Header("Resource Palel")]
+			[Header("Resource Panel")]
 			public string powerLabelName = "PowerLabel";
 			public string moneyLabelName = "MoneyLabel";
 			public string popLabelName = "PopLabel";
@@ -45,7 +45,7 @@ namespace Untitled
 			private Text powerLabel;
 			private Text moneyLabel;
 			private Text popLabel;
-
+			private ToggleButton deleteModeButton;
 			
 			// Start is called before the first frame update
 			void Start()
@@ -53,6 +53,7 @@ namespace Untitled
 				powerLabel = GameObject.Find(powerLabelName).GetComponent<Text>();
 				moneyLabel = GameObject.Find(moneyLabelName).GetComponent<Text>();
 				popLabel = GameObject.Find(popLabelName).GetComponent<Text>();
+				deleteModeButton = GameObject.Find("DeleteModeButton").GetComponent<ToggleButton>();
 				
 				playerStorage = Player.Instance.GetStorage();
 				
@@ -75,6 +76,7 @@ namespace Untitled
 				}
 			}
 			
+			// Event handlers for when the trashcan button is clicked
 			public void DeleteButtonToggleOn(BaseEventData eventData)
 			{
 				Player.Instance.SwitchState<PlayerDeletingState>();
@@ -83,6 +85,18 @@ namespace Untitled
 			{
 				if(Player.Instance.GetCurrentState() is PlayerDeletingState)
 					Player.Instance.SwitchState<PlayerSelectingState>();
+			}
+			// Actively toggles off the button as opposed to being an event handler
+			public void ToggleOffDeleteButton()
+			{
+				if(deleteModeButton.toggleState)
+					deleteModeButton.Toggle();
+			}
+			// Actively toggles ob the button
+			public void ToggleOnDeleteButton()
+			{
+				if(!deleteModeButton.toggleState)
+					deleteModeButton.Toggle();
 			}
 		}
 	}

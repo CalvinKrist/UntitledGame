@@ -15,7 +15,7 @@ public class Cable : Placeable
 	private const int LEFT = 8;
 	
 	private SpriteRenderer renderer;
-	private Sprite[] sprites;
+	private static Sprite[] sprites = null;
 	private const int PIPE_MAJOR = 0;
 	private const int PIPE_MINOR = 1;
 	private const int PIPE_TRIP_UR = 2;
@@ -28,13 +28,19 @@ public class Cable : Placeable
 	private const int PIPE_L_RIGHT = 9;
 	private const int PIPE_L_UP = 10;
 	
-	private void Start()
+	void Awake()
 	{
 		renderer = GetComponent<SpriteRenderer>();
-		sprites = Resources.LoadAll<Sprite>("Sprites/pipe_tiles");
-		
+		if(sprites == null)
+			sprites = Resources.LoadAll<Sprite>("Sprites/pipe_tiles");
+	}
+	
+	private void Start()
+	{		
 		base.Start();
-		Placeable.OnPlaceableCreateEvent += OnPlaceablePlaced;
+		
+		Placeable.OnPlaceableCreateEventP2 += OnPlaceablePlaced;
+		Placeable.OnPlaceableDestroyEventP2 += OnPlaceableDestroyed;
 		
 		UpdateSprite();
 	}
@@ -43,6 +49,9 @@ public class Cable : Placeable
 	// normally when an adjacent cable was placed
 	private void UpdateSprite()
 	{		
+		if(renderer == null)
+			renderer = GetComponent<SpriteRenderer>();
+		
 		int directions = 0;
 		
 		if(GridUtils.GetPlaceableAt(coords + Vector2Int.right) != null)
@@ -109,6 +118,11 @@ public class Cable : Placeable
 	private void OnPlaceablePlaced(Placeable other)
 	{
 		if(this.IsNextTo(other))
+			UpdateSprite();
+	}
+	private void OnPlaceableDestroyed(Placeable other)
+	{
+		if(other != this && this.IsNextTo(other)) 
 			UpdateSprite();
 	}
 }
