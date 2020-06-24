@@ -31,7 +31,6 @@ namespace Untitled
 			}
 			public override void OnStateExit()
 			{
-				GameObject.Find("BuildingBuyerSelection").BroadcastMessage("Deselect");
 				active = false;
 			}
 			public override void Update()

@@ -25,12 +25,10 @@ namespace Untitled
 			}
 			public override void OnStateExit()
 			{
-				GameObject.Find("BuildingBuyerSelection").BroadcastMessage("Deselect");
 			}
 			
 			public override void Update()
 			{
-				//Debug.Log("PLACING");
 				// Exit state is 'Escape' is pressed or
 				// if right click is pressed
 				if(Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))

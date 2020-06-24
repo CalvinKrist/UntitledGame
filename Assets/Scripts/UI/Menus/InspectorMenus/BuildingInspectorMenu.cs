@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Untitled.Resource;
 using Untitled.UI;
+using Untitled.Controller;
 using UnityEditor;
 
 namespace Untitled 
@@ -117,7 +118,9 @@ namespace Untitled
 
 			private void OnSpriteClick(ClickableSprite sprite) 
 			{
-				if(!canvas.enabled && sprite.gameObject.GetComponent<Building>() != null)
+				if(Player.Instance.GetCurrentState() is PlayerSelectingState && 
+					!canvas.enabled && 
+					sprite.gameObject.GetComponent<Building>() != null)
 					Enable(sprite.gameObject.GetComponent<Building>());
 			}
 			

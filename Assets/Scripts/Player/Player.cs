@@ -59,6 +59,11 @@ namespace Untitled
 				if (state && state != currentState) {
 					if (currentState)
 						currentState.OnStateExit();
+					
+					OnPlayerStateChangedEvent?.Invoke(
+						new KeyValuePair<PlayerState, PlayerState>(currentState, state)
+					);
+					
 					currentState = state;
 					currentState.OnStateEnter();
 					success = true;
@@ -154,6 +159,12 @@ namespace Untitled
 			{
 				return GetComponent<ResourceStorage>();
 			}
+			
+			/***************
+			***  Events  ***
+			****************/
+			// Event maps oldState -> new State
+			public static event Action<KeyValuePair<PlayerState,PlayerState>> OnPlayerStateChangedEvent;
 		}
 	}
 
