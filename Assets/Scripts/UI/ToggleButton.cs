@@ -10,6 +10,8 @@ namespace Untitled
 	namespace UI
 	{
 		[RequireComponent(typeof(Button))]
+		// A toggle-able button that visually, when toggled,
+		// gets larger and has an outline
 		public class ToggleButton : MonoBehaviour
 		{
 			private Button button;
@@ -22,7 +24,7 @@ namespace Untitled
 			public EventTrigger.TriggerEvent toggleOnCallbacks;
 			public EventTrigger.TriggerEvent toggleOffCallbacks;
 			
-			private bool toggleState;
+			public bool toggleState;
 			
 			void Awake()
 			{
@@ -40,6 +42,7 @@ namespace Untitled
 				outline.enabled        = false;
 			}
 
+			// Event handler for when the button is clicked
 			private void OnButtonClick()
 			{
 				toggleState = !toggleState;
@@ -56,6 +59,12 @@ namespace Untitled
 					this.transform.localScale /= scaleFactor;
 					toggleOffCallbacks.Invoke(new BaseEventData(EventSystem.current));
 				}
+			}
+			
+			// Called to toggle the state of the button
+			public void Toggle()
+			{
+				OnButtonClick();
 			}
 		}
 	}

@@ -59,6 +59,11 @@ namespace Untitled
 				if (state && state != currentState) {
 					if (currentState)
 						currentState.OnStateExit();
+					
+					OnPlayerStateChangedEvent?.Invoke(
+						new KeyValuePair<PlayerState, PlayerState>(currentState, state)
+					);
+					
 					currentState = state;
 					currentState.OnStateEnter();
 					success = true;
@@ -117,11 +122,11 @@ namespace Untitled
 			{							
 				storage = GetComponent<ResourceStorage>();
 				buildings = new List<Building>();
-				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
+				Placeable.OnPlaceableCreateEventP2 += (Placeable placeable) => {
 					if(placeable.IsBuilding())
 						buildings.Add(placeable.gameObject.GetComponent<Building>() );
 				};
-				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
+				Placeable.OnPlaceableDestroyEventP2 += (Placeable placeable) => {
 					if(placeable.IsBuilding())
 						buildings.Remove(placeable.gameObject.GetComponent<Building>());
 				};
@@ -154,6 +159,12 @@ namespace Untitled
 			{
 				return GetComponent<ResourceStorage>();
 			}
+			
+			/***************
+			***  Events  ***
+			****************/
+			// Event maps oldState -> new State
+			public static event Action<KeyValuePair<PlayerState,PlayerState>> OnPlayerStateChangedEvent;
 		}
 	}
 

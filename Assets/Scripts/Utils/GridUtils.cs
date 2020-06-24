@@ -43,18 +43,15 @@ namespace Untitled
 			}
 			#endregion
 			
-			private Dictionary<Coords, Placeable> placeableMap;
+			private Dictionary<Coords, Placeable> placeableMap = new Dictionary<Coords, Placeable>();
 			
 			void Start()
 			{
-				placeableMap = new Dictionary<Coords, Placeable>();
-				
-				Placeable.OnPlaceableCreateEvent += (Placeable placeable) => {
-					foreach(Coords coords in placeable.GetBounds()) {
-						placeableMap[coords] = placeable;
-					}
+				Placeable.OnPlaceableCreateEventP1 += (Placeable placeable) => {
+					foreach(Coords coords in placeable.GetBounds()) 
+						placeableMap.Add(coords, placeable);
 				};
-				Placeable.OnPlaceableDestroyEvent += (Placeable placeable) => {
+				Placeable.OnPlaceableDestroyEventP1 += (Placeable placeable) => {
 					foreach(Coords coords in placeable.GetBounds())
 						placeableMap.Remove(coords);
 				};

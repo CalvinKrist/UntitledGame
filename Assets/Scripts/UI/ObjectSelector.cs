@@ -40,6 +40,13 @@ public class ObjectSelector : MonoBehaviour
 		};
 	}
 	
+	void Start()
+	{
+		Player.OnPlayerStateChangedEvent += (KeyValuePair<PlayerState, PlayerState> args) => {
+			Deselect();
+		};
+	}
+	
     public void OnClick()
 	{
 		Select();
