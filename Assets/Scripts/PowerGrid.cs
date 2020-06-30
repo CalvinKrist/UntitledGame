@@ -85,29 +85,16 @@ namespace Untitled
 				
 				if(placeable.IsBuilding())
 					grid.inputs.Add(placeable.GetComponent<Building>());
-				else if(placeable.IsCable())
+				if(placeable.IsCable())
 					grid.cables.Add(placeable.GetComponent<Cable>());
 				
 				grids.Add(grid);
 				foreach(Coords coords in placeable.GetBounds())
 					posToGridMap.Add(coords, grid);
 				
-				// Create a list of surrounding coords to check
-				// if there are other PowerGrids
-				List<Coords> placeableTiles = placeable.GetBounds();
-				List<Coords> surroundingTiles = new List<Coords>();
-				foreach(Coords coords in placeableTiles)
-				{
-					if(!placeableTiles.Contains(coords + Vector2Int.up))
-						surroundingTiles.Add(coords + Vector2Int.up);
-					if(!placeableTiles.Contains(coords + Vector2Int.right))
-						surroundingTiles.Add(coords + Vector2Int.right);
-					if(!placeableTiles.Contains(coords + Vector2Int.down))
-						surroundingTiles.Add(coords + Vector2Int.down);
-					if(!placeableTiles.Contains(coords + Vector2Int.left))
-						surroundingTiles.Add(coords + Vector2Int.left);
-				}
-				
+				// Look through all surrounding tiles. If there's
+				// a pre-existing grid there, merge then together.
+				List<Coords> surroundingTiles = placeable.GetSurroundingTiles();
 				foreach(Coords coords in surroundingTiles)
 				{
 					if(posToGridMap.ContainsKey(coords))
@@ -117,10 +104,99 @@ namespace Untitled
 			
 			private void PlaceableDestroyedEventHandler(Placeable placeable)
 			{
+				PowerGrid oldGrid = posToGridMap[placeable.coords];
 				
+				// Update existing data structures with the removal
+				grids.Remove(oldGrid);
+				foreach(Coords coords in placeable.GetBounds())
+					posToGridMap.Remove(coords);
+				
+				// Remove this placeable from the old grid
+				if(placeable.IsBuilding())
+				{
+					Building building = placeable.GetComponent<Building>();
+					oldGrid.inputs.Remove(building);
+					oldGrid.outputs.Remove(building);
+				}
+				if(placeable.IsCable())
+				{
+					Cable cable = placeable.GetComponent<Cable>();
+					oldGrid.cables.Remove(cable);
+				}
+				
+				// For each surrounding tile, find which parts of the 
+				// old grid were still connected. Make a new grid and
+				// add it to the manager.
+				List<Coords> surroundingTiles = placeable.GetSurroundingTiles();
+				for(int i = 0; i < surroundingTiles.Count; i++)
+				{
+					// Find all reachable items from this coord
+					List<Placeable> reachables = new List<Placeable>();
+					List<Placeable> visited = new List<Placeable>();
+					Queue<Placeable> q = new Queue<Placeable>();
+					q.Enqueue(oldGrid.GetElemAt(surroundingTiles[i]));
+					while(q.Count != 0)
+					{
+						Placeable elem = q.Dequeue();
+						if(elem != null)
+						{
+							reachables.Add(elem);
+							
+							List<Coords> bounds = elem.GetBounds();
+							visited.Add(elem);
+							foreach(Coords coord in bounds)
+							{
+								// Check all the tiles surrounding this coord for
+								// a non-visited element that isn't already in the q.
+								List<Placeable> candidates = new List<Placeable>();
+								candidates.Add(oldGrid.GetElemAt(coord + Vector2Int.up));
+								candidates.Add(oldGrid.GetElemAt(coord + Vector2Int.right));
+								candidates.Add(oldGrid.GetElemAt(coord + Vector2Int.left));
+								candidates.Add(oldGrid.GetElemAt(coord + Vector2Int.down));
+								foreach(Placeable candidate in candidates)
+									if(candidate != null && 
+										!visited.Contains(candidate) &&
+										!q.Contains(candidate)
+									)
+									{
+										q.Enqueue(candidate);
+									}
+							}
+						}
+					} // end of while(q.Count != 0)
+					
+					// If one of the surrounding tiles was 
+					// reachable from another, remove it from
+					// our list so we don't double count
+					for(int j = i + 1; j < surroundingTiles.Count; j++)
+						foreach(Placeable elem in reachables)
+							if(elem.GetBounds().Contains(surroundingTiles[j])) {
+								surroundingTiles.RemoveAt(j);
+							}
+							
+					// Create a new PowerGrid based on
+					// the reachable list
+					if(reachables.Count > 0)
+					{
+						PowerGrid newGrid = new PowerGrid();
+						foreach(Placeable elem in reachables)
+						{
+							if(elem.IsBuilding())
+								newGrid.inputs.Add(elem.GetComponent<Building>());
+							if(elem.IsCable())
+								newGrid.cables.Add(elem.GetComponent<Cable>());
+						}
+						grids.Add(newGrid);
+						
+											
+						// Update the posToGrid map for all tiles
+						foreach(Placeable elem in reachables)
+							foreach(Coords coord in elem.GetBounds())
+								posToGridMap[coord] = newGrid;
+					}
+				}
 			}
-			
-		}
+		} // end of PowerGridManager
 		
 		public class PowerGrid
 		{
@@ -130,15 +206,24 @@ namespace Untitled
 			
 			public PowerGrid()
 			{
-				Debug.Log("creating grid");
 				inputs = new List<Building>();
 				outputs = new List<Building>();
 				cables = new List<Cable>();
 			}
 			
-			~PowerGrid()
+			public Placeable GetElemAt(Coords coord)
 			{
-				Debug.Log("destroying grid");
+				foreach(Building building in inputs)
+					if(building.GetBounds().Contains(coord))
+						return building;
+				foreach(Building building in outputs)
+					if(building.GetBounds().Contains(coord))
+						return building;	
+				foreach(Cable cable in cables)
+					if(cable.GetBounds().Contains(coord))
+						return cable;	
+					
+				return null;
 			}
 		}
 
