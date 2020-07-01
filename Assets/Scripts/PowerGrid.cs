@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Untitled.Tiles;
 using Untitled.Utils;
+using Untitled.Resource;
 
 namespace Untitled
 {
@@ -83,10 +84,7 @@ namespace Untitled
 				// Create a PowerGrid of just this placeable
 				PowerGrid grid = new PowerGrid();
 				
-				if(placeable.IsBuilding())
-					grid.inputs.Add(placeable.GetComponent<Building>());
-				if(placeable.IsCable())
-					grid.cables.Add(placeable.GetComponent<Cable>());
+				grid.Add(placeable);
 				
 				grids.Add(grid);
 				foreach(Coords coords in placeable.GetBounds())
@@ -181,13 +179,9 @@ namespace Untitled
 						PowerGrid newGrid = new PowerGrid();
 						foreach(Placeable elem in reachables)
 						{
-							if(elem.IsBuilding())
-								newGrid.inputs.Add(elem.GetComponent<Building>());
-							if(elem.IsCable())
-								newGrid.cables.Add(elem.GetComponent<Cable>());
+							newGrid.Add(elem);
 						}
 						grids.Add(newGrid);
-						
 											
 						// Update the posToGrid map for all tiles
 						foreach(Placeable elem in reachables)
@@ -196,6 +190,12 @@ namespace Untitled
 					}
 				}
 			}
+			
+			public bool IsPowered(Placeable placeable)
+			{
+				return posToGridMap[placeable.coords].IsPowered(placeable);
+			}
+			
 		} // end of PowerGridManager
 		
 		public class PowerGrid
@@ -209,6 +209,13 @@ namespace Untitled
 				inputs = new List<Building>();
 				outputs = new List<Building>();
 				cables = new List<Cable>();
+				
+				Debug.Log("Created power grid");
+			}
+			
+			~PowerGrid()
+			{
+				Debug.Log("Deleted power grid");
 			}
 			
 			public Placeable GetElemAt(Coords coord)
@@ -224,6 +231,41 @@ namespace Untitled
 						return cable;	
 					
 				return null;
+			}
+			
+			public void Add(Placeable placeable)
+			{
+				if(placeable.IsBuilding())
+				{
+					Building building = placeable.GetComponent<Building>();
+					if(building.generatedResourceType == ResourceType.Power)
+						inputs.Add(building);
+					if(building.powerCost > 0)
+						outputs.Add(building);
+				}
+				if(placeable.IsCable())
+					cables.Add(placeable.GetComponent<Cable>());
+			}
+			
+			public bool IsPowered(Placeable placeable)
+			{
+				/*float generated = 0;
+				foreach(Building building in inputs)
+					generated += building.GetGeneratedResourceCount();*/
+				
+				if(placeable.IsBuilding())
+				{
+					Building building = placeable.GetComponent<Building>();
+					if(inputs.Contains(building))
+						return true;
+					if(outputs.Contains(building)) {
+						if(inputs.Count > 0)
+							return true;
+						return false;
+					}
+				}
+
+				return false;
 			}
 		}
 
