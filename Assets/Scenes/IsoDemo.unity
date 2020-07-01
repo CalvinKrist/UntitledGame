@@ -199,8 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bdcaf538992f0449a87999b84319b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallet: {fileID: 322195041}
-  TileMapName: Tilemap
 --- !u!114 &322195045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c289e7bb3b2a1c444ab4f80084434df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
 --- !u!114 &322195048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7034,7 +7031,7 @@ PrefabInstance:
     - target: {fileID: 3653492814047700328, guid: 0d4160a8ba2019c4d8475718a9d399c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000076293945
+      value: -0.000055268618
       objectReference: {fileID: 0}
     - target: {fileID: 3653492814047700328, guid: 0d4160a8ba2019c4d8475718a9d399c2,
         type: 3}

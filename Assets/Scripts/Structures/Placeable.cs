@@ -13,6 +13,7 @@ public class Placeable : MonoBehaviour
 	public Vector2Int size;
 	public Coords coords;
 	private List<Coords> boundsList;
+	private List<Coords> surroundingTiles;
 	
 	protected void Start()
 	{
@@ -20,7 +21,10 @@ public class Placeable : MonoBehaviour
 		
 		boundsList = new List<Coords>();
 		
-		// Calculate offset bounds rounding down 
+		/*
+		* Generate the list of all tiles this Placeable is on
+		* Calculate offset by rounding down
+		*/ 
 		int xStart = -(int)((size.x - 1) / 2);
 		int xEnd = (int)(size.x / 2);
 		int yStart = -(int)((size.y - 1) / 2);
@@ -29,6 +33,23 @@ public class Placeable : MonoBehaviour
 		for(int xOff = xStart; xOff <= xEnd; xOff++)
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
+			
+			
+		/*
+		* Generate list of surrounding tiles
+		*/
+		surroundingTiles = new List<Coords>();
+		foreach(Coords coords in boundsList)
+		{
+			if(!boundsList.Contains(coords + Vector2Int.up))
+				surroundingTiles.Add(coords + Vector2Int.up);
+			if(!boundsList.Contains(coords + Vector2Int.right))
+				surroundingTiles.Add(coords + Vector2Int.right);
+			if(!boundsList.Contains(coords + Vector2Int.down))
+				surroundingTiles.Add(coords + Vector2Int.down);
+			if(!boundsList.Contains(coords + Vector2Int.left))
+				surroundingTiles.Add(coords + Vector2Int.left);
+		}
 		
 		OnPlaceableCreateEventP1?.Invoke(this);
 		OnPlaceableCreateEventP2?.Invoke(this);
@@ -82,6 +103,12 @@ public class Placeable : MonoBehaviour
 	public List<Coords> GetBounds()
 	{
 		return boundsList;
+	}
+	
+	// Returns a list of all tiles surrounding this placeable
+	public List<Coords> GetSurroundingTiles()
+	{
+		return surroundingTiles;
 	}
 	
 	/***************
