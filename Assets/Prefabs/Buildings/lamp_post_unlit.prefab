@@ -111,6 +111,7 @@ MonoBehaviour:
   cost: 50
   placeableTiles: 000000000100000002000000
   size: {x: 1, y: 1}
+  spriteOffset: {x: 0, y: 4}
   name: Lamp
   moneyGen: 0
   powerCost: 10

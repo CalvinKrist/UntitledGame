@@ -12,6 +12,7 @@ public class Placeable : MonoBehaviour
 	public List<TileType> placeableTiles;
 	public Vector2Int size;
 	public Coords coords;
+	public Vector2 spriteOffset; // in units of tile count
 	private List<Coords> boundsList;
 	private List<Coords> surroundingTiles;
 	
@@ -53,6 +54,11 @@ public class Placeable : MonoBehaviour
 		
 		OnPlaceableCreateEventP1?.Invoke(this);
 		OnPlaceableCreateEventP2?.Invoke(this);
+		
+		// Offset the sprite without offsetting the grid location
+		float xOffset = spriteOffset.x * GridUtils.Instance.dx.x;
+		float yOffset = spriteOffset.y * GridUtils.Instance.dy.y;
+		this.gameObject.transform.position += new Vector3(xOffset, yOffset, 0);
 	}
 	
 	protected void OnDestroy() 
@@ -71,21 +77,6 @@ public class Placeable : MonoBehaviour
 	}
 	public bool IsNextTo(Placeable other)
 	{
-		// Create a list of surrounding coords 
-		List<Coords> placeableTiles = this.GetBounds();
-		List<Coords> surroundingTiles = new List<Coords>();
-		foreach(Coords coords in placeableTiles)
-		{
-			if(!placeableTiles.Contains(coords + Vector2Int.up))
-				surroundingTiles.Add(coords + Vector2Int.up);
-			if(!placeableTiles.Contains(coords + Vector2Int.right))
-				surroundingTiles.Add(coords + Vector2Int.right);
-			if(!placeableTiles.Contains(coords + Vector2Int.down))
-				surroundingTiles.Add(coords + Vector2Int.down);
-			if(!placeableTiles.Contains(coords + Vector2Int.left))
-				surroundingTiles.Add(coords + Vector2Int.left);
-		}
-		
 		// Don't check GridUtils in O(n) time because
 		// it isn't guarunteed to work in PlaceableCreated
 		// or PlaceableDestroyed event handlers. Instead 
