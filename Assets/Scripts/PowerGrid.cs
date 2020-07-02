@@ -169,7 +169,7 @@ namespace Untitled
 					for(int j = i + 1; j < surroundingTiles.Count; j++)
 						foreach(Placeable elem in reachables)
 							if(elem.GetBounds().Contains(surroundingTiles[j])) {
-								surroundingTiles.RemoveAt(j);
+								surroundingTiles.RemoveAt(j--);
 							}
 							
 					// Create a new PowerGrid based on
@@ -189,7 +189,7 @@ namespace Untitled
 								posToGridMap[coord] = newGrid;
 					}
 				}
-			}
+			} // end of PlaceableDestroyedEventHandler
 			
 			public bool IsPowered(Placeable placeable)
 			{

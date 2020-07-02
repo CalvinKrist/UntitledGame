@@ -35,7 +35,6 @@ public class Placeable : MonoBehaviour
 			for(int yOff = yStart; yOff <= yEnd; yOff++)
 				boundsList.Add(coords + new Vector2Int(xOff, -yOff));
 			
-			
 		/*
 		* Generate list of surrounding tiles
 		*/
@@ -65,6 +64,11 @@ public class Placeable : MonoBehaviour
 	{
 		OnPlaceableDestroyEventP1?.Invoke(this);
 		OnPlaceableDestroyEventP2?.Invoke(this);
+	}
+	
+	public bool Equals(Placeable other)
+	{
+		return this.gameObject == other.gameObject;
 	}
 	
 	public bool IsBuilding()

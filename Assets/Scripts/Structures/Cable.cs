@@ -45,13 +45,20 @@ public class Cable : Placeable
 		UpdateSprite();
 	}
 	
+	// Destroy event handlers when the game object is deleted,
+	// not when garbage collection happens
+    private void OnDestroy()
+    {
+		base.OnDestroy();
+		
+		Placeable.OnPlaceableCreateEventP2 -= OnPlaceablePlaced;
+		Placeable.OnPlaceableDestroyEventP2 -= OnPlaceableDestroyed;
+    }
+	
 	// Called when the sprite needs updating,
 	// normally when an adjacent cable was placed
 	private void UpdateSprite()
 	{		
-		if(renderer == null)
-			renderer = GetComponent<SpriteRenderer>();
-		
 		int directions = 0;
 		
 		if(GridUtils.GetPlaceableAt(coords + Vector2Int.right) != null)
@@ -117,12 +124,16 @@ public class Cable : Placeable
 	
 	private void OnPlaceablePlaced(Placeable other)
 	{
-		if(this.IsNextTo(other))
+		if(!this.Equals(other) && 
+		   this.IsNextTo(other))
 			UpdateSprite();
 	}
-	private void OnPlaceableDestroyed(Placeable other)
+	private void OnPlaceableDestroyed(Placeable deletedPlaceable)
 	{
-		if(other != this && this.IsNextTo(other)) 
+		Debug.Log(this.Equals(deletedPlaceable));
+		
+		if(!this.Equals(deletedPlaceable) && 
+		   this.IsNextTo(deletedPlaceable)) 
 			UpdateSprite();
 	}
 }
