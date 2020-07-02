@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using Untitled.UI;
 using System;
 using Untitled.Utils;
+using Untitled.Power;
 
 [RequireComponent(typeof(ResourceStorage))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -17,7 +18,6 @@ public class Building : Placeable
 	[Header("General Settings")]
 	public string name;
     // Cost to place
-	public int cost {get; set;}
 	public float moneyGen = 20; // measured per minute with full pop
 	private float moneyGenerationRate; // generation per second
     // How much electricity it needs to function
@@ -25,10 +25,6 @@ public class Building : Placeable
 	// Max number of pops that can work the building
 	public int maxPops;
 	private float invMaxPops; // precomputed for faster math
-	// What tiles the building can be placed on
-	[field: SerializeField]
-	public List<TileType> placeableTiles {get; set;}
-	public Vector2 size {get; set;}
 
     // Resource output variables
     [Header("Resource Output")]
@@ -44,10 +40,17 @@ public class Building : Placeable
     private float depletionPerSec;
     public IResourceStorage inputStorage;
 	
+	[Header("Rendering Settings")]
+	public Sprite poweredSprite;
+	public Sprite unpoweredSprite;
+	private SpriteRenderer renderer;
+	
 	private ResourceStorage storage;
 
     void Awake()
     {
+		renderer = GetComponent<SpriteRenderer>();
+		
         // Set resource rates per second
         if (generatedResourceType != ResourceType.None)
             generationPerSec = resourceGenerationRate / 60f;
@@ -62,7 +65,8 @@ public class Building : Placeable
 		
 		moneyGenerationRate = moneyGen / 60;
 		
-		invMaxPops = 1f / maxPops;
+		if(maxPops > 0)
+			invMaxPops = 1f / maxPops;
 		
 		this.storage = GetComponent<ResourceStorage>();
     }
@@ -82,21 +86,40 @@ public class Building : Placeable
 
 	private float GetPopScalar()
 	{
+		if(maxPops == 0)
+			return 1;
+		
 		return storage.GetResourceCount(ResourceType.Population) * invMaxPops;
+	}
+	
+	// Returns count of generated resources on this specific update
+	// without factoring in if it's powered
+	public float GetGeneratedResourceCount()
+	{
+		return generationPerSec * Time.deltaTime * GetPopScalar();
 	}
 	
     void Update()
     {	
+		bool powered = PowerGridManager.Instance.IsPowered(GetComponent<Placeable>());
+		int poweredFactor = 1;
+		if(powered){
+			renderer.sprite = poweredSprite;
+		}
+		else {
+			renderer.sprite = unpoweredSprite;
+			poweredFactor = 0;
+		}
+		
         if(destinationStorage != null && generatedResourceType != ResourceType.None && 
             (resourceInputType == ResourceType.None || 
             (inputStorage != null && inputStorage.GetResourceCount(resourceInputType) >= depletionPerSec * Time.deltaTime)))
         {
-			// TODO: update to include fractional workers, or full if max pops = 0
-            destinationStorage.AddResources(generatedResourceType, generationPerSec * Time.deltaTime * GetPopScalar());
+            destinationStorage.AddResources(generatedResourceType, GetGeneratedResourceCount() * poweredFactor);
 
             if(!(resourceInputType == ResourceType.None))
             {
-                inputStorage.AddResources(resourceInputType, -depletionPerSec * Time.deltaTime * GetPopScalar());
+                inputStorage.AddResources(resourceInputType, -depletionPerSec * Time.deltaTime * GetPopScalar() * poweredFactor);
             }
         } 
     }

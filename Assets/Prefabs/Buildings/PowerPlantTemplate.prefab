@@ -96,18 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc59152f5fa92c64b870a46af2e90451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 69
+  cost: 75
   placeableTiles: 00000000
   size: {x: 3, y: 2}
   name: Power Plant
   moneyGen: 60
   powerCost: 0
   maxPops: 15
-  <placeableTiles>k__BackingField: 00000000
   generatedResourceType: 1
   resourceGenerationRate: 100
   resourceInputType: 2
   resourceDepletionRate: 10
+  poweredSprite: {fileID: 21300000, guid: e8195289bbf0c614db8d5f920a8d77e2, type: 3}
+  unpoweredSprite: {fileID: 21300000, guid: e8195289bbf0c614db8d5f920a8d77e2, type: 3}
 --- !u!60 &3052587177816570916
 PolygonCollider2D:
   m_ObjectHideFlags: 0

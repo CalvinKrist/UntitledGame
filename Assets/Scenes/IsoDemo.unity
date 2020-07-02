@@ -346,7 +346,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b7d3486e9c24779469e1b8818a618af0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7384,6 +7384,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8618980946300841409, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787215701083891485, guid: 0d4160a8ba2019c4d8475718a9d399c2,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

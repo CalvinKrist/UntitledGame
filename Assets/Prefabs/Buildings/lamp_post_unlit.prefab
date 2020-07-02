@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3296255290973932085
+--- !u!1 &1245475299696269994
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2495825581941627476}
-  - component: {fileID: 785378628806764240}
-  - component: {fileID: 1104545416041513076}
-  - component: {fileID: -6353200369734191541}
-  - component: {fileID: 2687703914944431072}
+  - component: {fileID: 7524086425184780137}
+  - component: {fileID: 2264289030632274349}
+  - component: {fileID: 6059170400259970044}
+  - component: {fileID: 3488143343858955090}
   m_Layer: 0
-  m_Name: CableTemplate
+  m_Name: lamp_post_unlit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2495825581941627476
+--- !u!4 &7524086425184780137
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296255290973932085}
+  m_GameObject: {fileID: 1245475299696269994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.03, y: -28.5, z: 0}
+  m_LocalPosition: {x: -0.25, y: -10.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &785378628806764240
+--- !u!212 &2264289030632274349
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296255290973932085}
+  m_GameObject: {fileID: 1245475299696269994}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,77 +72,53 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1729218811930035615, guid: 30c486af143153f4cb43387aee1f21cd,
-    type: 3}
-  m_Color: {r: 0.8207547, g: 0.523058, b: 0.21293166, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c30572ad48815444ba8b748918c9eb18, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1104545416041513076
+--- !u!114 &6059170400259970044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296255290973932085}
+  m_GameObject: {fileID: 1245475299696269994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0c41e143fdf78498a5cdef9301f3e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7242ec08021cfe247bf3350baa4af0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 10
-  placeableTiles: 0000000001000000
+  initializer: {fileID: 0}
+--- !u!114 &3488143343858955090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245475299696269994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc59152f5fa92c64b870a46af2e90451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 50
+  placeableTiles: 000000000100000002000000
   size: {x: 1, y: 1}
---- !u!60 &-6353200369734191541
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296255290973932085}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.032258, y: 1.032258}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.32258064, y: 0.42741933}
-      - {x: -0.33870965, y: 0.41129032}
-      - {x: -0.33870965, y: 0.11290322}
-      - {x: -0.29032257, y: 0.08064516}
-      - {x: 0.33870965, y: 0.08064516}
-      - {x: 0.33870965, y: 0.41129032}
-      - {x: 0.25, y: 0.42741933}
---- !u!114 &2687703914944431072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296255290973932085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f5e796a3df03942859d50c2cb9e89b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableDialogue: 0
-  outlineWidth: 0
-  shader: {fileID: 0}
+  spriteOffset: {x: 0, y: 4}
+  name: Lamp
+  moneyGen: 0
+  powerCost: 10
+  maxPops: 0
+  generatedResourceType: 4
+  resourceGenerationRate: 0
+  resourceInputType: 4
+  resourceDepletionRate: 0
+  poweredSprite: {fileID: 21300000, guid: 5a847ab08cfbc88478fa8cdf4d610fc7, type: 3}
+  unpoweredSprite: {fileID: 21300000, guid: c30572ad48815444ba8b748918c9eb18, type: 3}

@@ -13,18 +13,28 @@ namespace Untitled
 			private Placeable toSpawn;
 			private ResourceStorage wallet;
 			
+			private bool active = false;
+			
 			public override void OnStateInitialize(Player player) 
 			{
 				base.OnStateInitialize(player);
 				wallet = player.GetComponent<ResourceStorage>();
+				
+				ObjectSelector.OnPlaceableButtonSelectedEvent += (Placeable obj) => {
+					if(active)
+					{
+						SetPlaceable(obj);
+					}
+				};
 			}
 			
 			public override void OnStateEnter()
 			{
-				
+				active = true;
 			}
 			public override void OnStateExit()
 			{
+				active = false;
 			}
 			
 			public override void Update()
